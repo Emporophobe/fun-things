@@ -23,6 +23,5 @@ abstract class AbstractFunThing implements IFunThing {
     @Override
     public abstract String getName();
 
-    @Override
     public abstract String getInfoString();
 }
