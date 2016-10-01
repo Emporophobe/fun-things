@@ -1,9 +1,15 @@
 package View;
 
+import FunThingGeneratorModel.IFunThing;
 import View.PreferenceWidgets.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyVetoException;
+import java.beans.VetoableChangeListener;
 
 /**
  * Created by DJ on 10/1/2016.
@@ -15,6 +21,8 @@ public class CategoryForm extends JFrame {
     JLabel distanceLabel;
     JLabel outsideLabel;
     JLabel categoryLabel;
+
+    CategoryWidget categoryWidget = new CategoryWidget();
 
     JPanel peopleRangeRow = new JPanel(new FlowLayout());
     JPanel timeRangeRow = new JPanel(new FlowLayout());
@@ -33,7 +41,7 @@ public class CategoryForm extends JFrame {
         this.outsideLabel = new JLabel("Wanna go outside?");
         this.categoryLabel = new JLabel("Categories: ");
 
-        this.entertainMeButton = new JButton("ENTERAIN ME");
+        this.entertainMeButton = new JButton("ENTERTAIN ME");
 
         this.peopleRangeRow.add(peopleRangeLabel);
         this.timeRangeRow.add(timeRangeLabel);
@@ -51,7 +59,7 @@ public class CategoryForm extends JFrame {
         costRow.add(new CostRangeWidget());
         distanceRow.add(new DistanceWidget());
         outsideRow.add(new OutsideOrNahWidget());
-        categoryRow.add(new CategoryWidget());
+        categoryRow.add(categoryWidget);
         innerPanel.add(preferences, BorderLayout.NORTH);
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
         innerPanel.add(this.peopleRangeRow);
@@ -61,8 +69,27 @@ public class CategoryForm extends JFrame {
         innerPanel.add(outsideRow);
         innerPanel.add(this.categoryRow);
         innerPanel.add(this.entertainMeButton);
+        this.categoryWidget.addEnablerToChildren(this.entertainMeButton);
+        this.entertainMeButton.addActionListener(e -> {
+            this.setVisible(false);
+            new FunThingFrame(new MockFunThing()).setVisible(true);
+            this.dispose();
+        });
+        this.entertainMeButton.setEnabled(false);
         this.add(innerPanel);
         this.setSize(800, 600);
     }
 
+    private class MockFunThing implements IFunThing{
+
+        @Override
+        public String getName() {
+            return "Watch cat videos.";
+        }
+
+        @Override
+        public String getInfoString() {
+            return "WATCH ALL THE CAT VIDEOS.";
+        }
+    }
 }
