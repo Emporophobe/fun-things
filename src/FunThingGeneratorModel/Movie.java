@@ -104,7 +104,7 @@ public class Movie extends AbstractFunThing{
      */
     @Override
     public String getInfoString() {
-        return "Runtime: " + runtime + "\n" +
+        return "Runtime: " + runtime + " minutes\n" +
                 "Genre: " + genre + "\n" +
                 "Plot: " + plotSummary + "\n" +
                 "Poster: " + urlToPoster;
