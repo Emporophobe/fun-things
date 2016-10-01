@@ -75,7 +75,7 @@ public class TV extends AbstractFunThing {
                     }
                     genres = genresString;
 
-                    summary = json.getString("summary");
+                    summary = json.getString("summary").substring(3, json.getString("summary").length() - 4);
                     runtime = tempRuntime;
 
                     //System.out.println("Counter: " + counter);
