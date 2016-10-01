@@ -4,7 +4,12 @@ import FunThingGeneratorModel.Category;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyVetoException;
+import java.beans.VetoableChangeListener;
 
 /**
  * Created by DJ on 10/1/2016.
@@ -19,6 +24,28 @@ public class CategoryWidget extends JPanel {
         for (Category c : Category.values()) {
             CategoryWidgette w = new CategoryWidgette(c);
             this.add(w);
+        }
+    }
+
+    public boolean somethingSelected() {
+        for(Component c : this.getComponents()){
+            CategoryWidgette w = (CategoryWidgette) c;
+            if(w.checkBox.isSelected()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addEnablerToChildren(JButton entertainMeButton) {
+        for(Component c : getComponents()){
+            CategoryWidgette w = (CategoryWidgette) c;
+            w.checkBox.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    entertainMeButton.setEnabled(somethingSelected());
+                }
+            });
         }
     }
 
