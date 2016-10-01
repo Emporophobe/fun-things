@@ -18,7 +18,7 @@ public class BoardGame extends AbstractFunThing {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/funthings",
-                    "root", "alllthefunthings");
+                    "user", "%");
             Statement statement = connection.createStatement();
             String query = "select name from boardgames where min_players <= " + participants
                     + " and max_players >= " + participants + " and duration <= " + maxMinutes
