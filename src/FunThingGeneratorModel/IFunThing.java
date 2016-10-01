@@ -3,7 +3,7 @@ package FunThingGeneratorModel;
 /**
  * Interface for fun things.
  */
-interface IFunThing {
+public interface IFunThing {
 
     /**
      * Get the name of the thing.
