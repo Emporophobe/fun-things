@@ -8,7 +8,7 @@ abstract class AbstractFunThing implements IFunThing {
     AbstractFunThing(int participants,
                      int maxMinutes,
                      int maxCost,
-                     boolean isOutside) {
+                     boolean isOutside) throws NoMatchException {
         generate(participants,
                 maxMinutes,
                 maxCost,
@@ -18,7 +18,7 @@ abstract class AbstractFunThing implements IFunThing {
     abstract void generate(int participants,
                            int maxMinutes,
                            int maxCost,
-                           boolean isOutside);
+                           boolean isOutside) throws NoMatchException;
 
     @Override
     public abstract String getName();
