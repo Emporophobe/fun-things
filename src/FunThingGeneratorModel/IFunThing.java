@@ -32,7 +32,7 @@ public interface IFunThing {
      * @param isOutside    Whether you have to leave the house to do the thing.
      * @return A list of IFunThing that fit the requirements.
      */
-    List<IFunThing> getListofFunThings(int participants,
+    List<IFunThing> getListOfFunThings(int participants,
                                        int minMinutes,
                                        int maxMinutes,
                                        int minCost,
