@@ -23,13 +23,17 @@ public class CategoryForm extends JFrame {
     JPanel outsideRow = new JPanel(new FlowLayout());
     JPanel categoryRow = new JPanel(new FlowLayout());
 
+    JButton entertainMeButton;
+
     public CategoryForm() {
         this.peopleRangeLabel = new JLabel("Number of People: ");
-        this.timeRangeLabel = new JLabel("Duration Range: ");
-        this.costLabel = new JLabel("Cost Range: ");
-        this.distanceLabel = new JLabel("Distance range: ");
+        this.timeRangeLabel = new JLabel("Maximum Duration: ");
+        this.costLabel = new JLabel("Maximum Cost: ");
+        this.distanceLabel = new JLabel("Maximum Distance: ");
         this.outsideLabel = new JLabel("Wanna go outside?");
         this.categoryLabel = new JLabel("Categories: ");
+
+        this.entertainMeButton = new JButton("ENTERAIN ME");
 
         this.peopleRangeRow.add(peopleRangeLabel);
         this.timeRangeRow.add(timeRangeLabel);
@@ -56,6 +60,7 @@ public class CategoryForm extends JFrame {
         innerPanel.add(this.distanceRow);
         innerPanel.add(outsideRow);
         innerPanel.add(this.categoryRow);
+        innerPanel.add(this.entertainMeButton);
         this.add(innerPanel);
         this.setSize(800, 600);
     }
