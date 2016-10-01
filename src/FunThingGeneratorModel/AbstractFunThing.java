@@ -4,8 +4,6 @@ package FunThingGeneratorModel;
  * Fun things!
  */
 abstract class AbstractFunThing implements IFunThing {
-    String theName;
-    String details;
 
     AbstractFunThing(int participants,
                      int maxMinutes,
@@ -23,11 +21,8 @@ abstract class AbstractFunThing implements IFunThing {
                            boolean isOutside);
 
     @Override
-    public String getName() {
-        return theName;
-    }
+    public abstract String getName();
 
-    public String getInfoString() {
-        return details;
-    }
+    @Override
+    public abstract String getInfoString();
 }
