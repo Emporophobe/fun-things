@@ -22,10 +22,36 @@ public class Movie extends AbstractFunThing{
     private int runtime;
     private String urlToPoster;
 
-    public Movie(int participants, int maxMinutes, int maxCost, boolean isOutside) {
+    public Movie(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
         super(participants, maxMinutes, maxCost, isOutside);
     }
 
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
+
+    private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+        InputStream is = new URL(url).openStream();
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            String jsonText = readAll(rd);
+            JSONObject json = new JSONObject(jsonText);
+            return json;
+        } finally {
+            is.close();
+        }
+    }
+
+    public static void main(String[] args) throws IOException, JSONException, NoMatchException {
+        Movie movie = new Movie(0, 90, 0, true);
+        System.out.println(movie.getName());
+        System.out.println(movie.getInfoString());
+    }
 
     @Override
     void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) {
@@ -71,33 +97,6 @@ public class Movie extends AbstractFunThing{
                 "Plot: " + plotSummary + "\n" +
                 "Poster: " + urlToPoster;
 
-    }
-
-    private static String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sb.append((char) cp);
-        }
-        return sb.toString();
-    }
-
-    private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
-        try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally {
-            is.close();
-        }
-    }
-
-    public static void main(String[] args) throws IOException, JSONException {
-        Movie movie = new Movie(0, 90, 0, true);
-        System.out.println(movie.getName());
-        System.out.println(movie.getInfoString());
     }
 
 
