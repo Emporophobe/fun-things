@@ -18,7 +18,7 @@ public class BoardGame extends AbstractFunThing {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/funthings",
-                    "root", "yourpassword");
+                    "root", "alllthefunthings");
             Statement statement = connection.createStatement();
             String query = "select name from boardgames where min_players <= " + participants
                     + " and max_players >= " + participants + " and duration <= " + maxMinutes
@@ -45,5 +45,9 @@ public class BoardGame extends AbstractFunThing {
     @Override
     public String getInfoString() {
         return this.name;
+    }
+
+    public static void main(String[] args) throws NoMatchException {
+        System.out.println(new BoardGame(3, 100, 0, false));
     }
 }
