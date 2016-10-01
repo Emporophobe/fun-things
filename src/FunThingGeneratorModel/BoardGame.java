@@ -1,8 +1,6 @@
 package FunThingGeneratorModel;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BoardGame extends AbstractFunThing {
     private String name;
@@ -10,12 +8,12 @@ public class BoardGame extends AbstractFunThing {
     public BoardGame(int participants,
                      int maxMinutes,
                      int maxCost,
-                     boolean isOutside) {
+                     boolean isOutside) throws NoMatchException {
         super(participants, maxMinutes, maxCost, isOutside);
     }
 
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) {
+    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection(
@@ -23,10 +21,14 @@ public class BoardGame extends AbstractFunThing {
                     "root", "yourpassword");
             Statement statement = connection.createStatement();
             String query = "select name from boardgames where min_players <= " + participants
-                    + "and max_players >= " + participants + "and duration <= " + maxMinutes;
-            String outerQuery = "select ";
-            ResultSet results = statement.executeQuery("select * from boardgames where limit 1");
-            this.name = results.getString("name");
+                    + " and max_players >= " + participants + " and duration <= " + maxMinutes
+                    + " order by rand() limit 1";
+            ResultSet results = statement.executeQuery(query);
+            if(results.next()) {
+                this.name = results.getString("name");
+            } else {
+                throw new NoMatchException("No board game matches those parameters");
+            }
             connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
