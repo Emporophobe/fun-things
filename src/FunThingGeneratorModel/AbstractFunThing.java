@@ -3,18 +3,31 @@ package FunThingGeneratorModel;
 /**
  * Fun things!
  */
-public abstract class AbstractFunThing implements IFunThing {
-    protected String theName;
-    protected String details;
+abstract class AbstractFunThing implements IFunThing {
+    String theName;
+    String details;
 
-    public AbstractFunThing(String name) {
-        this.theName = name;
+    AbstractFunThing(int participants,
+                     int maxMinutes,
+                     int maxCost,
+                     boolean isOutside) {
+        generate(participants,
+                maxMinutes,
+                maxCost,
+                isOutside);
     }
+
+    abstract void generate(int participants,
+                           int maxMinutes,
+                           int maxCost,
+                           boolean isOutside);
 
     @Override
     public String getName() {
         return theName;
     }
 
-    public abstract String getFormattedInformationString();
+    public String getInfoString() {
+        return details;
+    }
 }

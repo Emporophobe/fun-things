@@ -7,7 +7,11 @@ import java.util.List;
  */
 public class Generator implements IGenerator {
     @Override
-    public List<IFunThing> generate(int n, List<Category> categories) {
-        return null; // TODO
+    public IFunThing generate(int participants,
+                              int maxMinutes,
+                              int maxCost,
+                              boolean isOutside,
+                              List<Category> categories) {
+        return null;
     }
 }
