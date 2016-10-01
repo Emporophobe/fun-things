@@ -17,14 +17,14 @@ public class settingsParser {
      */
     public static String getKey(String key) {
         try {
-            File apiKeys = new File("settings.yaml");
+            File apiKeys = new File("src/settings.yaml");
             BufferedReader reader = new BufferedReader(new FileReader(apiKeys));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] words = line.split(" ");
                 if (words[0].equals(key + ":")) {
-                    // add 2 for the colon and the space after
-                    return line.substring(words[0].length() + 2);
+                    // add 1 for the space after
+                    return line.substring(words[0].length() + 1);
                 }
             }
             return "NO_VALUE";
