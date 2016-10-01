@@ -2,6 +2,10 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by DJ on 10/1/2016.
@@ -16,6 +20,15 @@ public class LaunchWindow extends JFrame {
     public LaunchWindow() {
         leggoButton = new JButton("LEGGO");
         exitButton = new JButton("BAIBAI");
+        exitButton.addActionListener(e -> {
+            this.setVisible(false);
+            this.dispose();
+        });
+        leggoButton.addActionListener(e -> {
+            this.setVisible(false);
+            new CategoryForm().setVisible(true);
+            this.dispose();
+        });
         title = new JLabel("FUN THINGS GENERATOR");
         title.setFont(new Font("Comic Sans", Font.BOLD, 50));
         subtitle = new JLabel("For when you don't know how to have fun.");
@@ -35,6 +48,4 @@ public class LaunchWindow extends JFrame {
         this.setSize(800, 600);
         this.add(myPanel);
     }
-
-
 }
