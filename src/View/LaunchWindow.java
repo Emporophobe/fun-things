@@ -2,9 +2,7 @@ package View;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -18,6 +16,9 @@ class LaunchWindow extends JFrame {
     private JPanel myPanel;
 
     LaunchWindow() {
+
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         try {
             leggoButton = new JButton(new ImageIcon(ImageIO.read(new File("resources/Start.png"))));
             leggoButton.setBackground(Color.BLACK);

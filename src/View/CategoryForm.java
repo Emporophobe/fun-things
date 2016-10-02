@@ -7,7 +7,6 @@ import View.PreferenceWidgets.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +15,8 @@ import java.io.IOException;
  * Created by DJ on 10/1/2016.
  */
 public class CategoryForm extends JFrame {
+
+
     private JLabel peopleRangeLabel;
     private JLabel timeRangeLabel;
     private JLabel costLabel;
@@ -38,6 +39,9 @@ public class CategoryForm extends JFrame {
     private JButton entertainMeButton;
 
     CategoryForm() {
+
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         this.peopleRangeLabel = new JLabel("Number of People: ");
         this.timeRangeLabel = new JLabel("Maximum Duration: ");
         this.costLabel = new JLabel("Maximum Cost: ");
