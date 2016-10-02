@@ -18,6 +18,12 @@ public class FunThingFrame extends JFrame{
     public FunThingFrame(IFunThing thing) {
         vetoButton = new JButton("VETO!");
         acceptButton = new JButton("YES!");
+        acceptButton.addActionListener(e->{
+            JOptionPane.showMessageDialog(this, "CONGRATULATIONS!!! \n" +
+                    "You have selected a fun thing!!! \n" +
+                    "Go do the thing! \n" +
+                    "omg you're going to have so much fun");
+        });
         vetoButton.addActionListener(e->{try {
             IFunThing f = Generator.generate(Preferences.getPeople(),Preferences.getMinutes(),Preferences.getCost(),
                     Preferences.isOutside(),Preferences.getCategories());
@@ -31,7 +37,7 @@ public class FunThingFrame extends JFrame{
         ftPanel = new FunThingPanel(thing);
         this.add(ftPanel, BorderLayout.CENTER);
         this.setSize(View.WIDTH,View.HEIGHT);
-        this.add(new ButtonDuo(acceptButton, vetoButton),BorderLayout.SOUTH);
+        this.add(new ButtonDuo(acceptButton, vetoButton), BorderLayout.SOUTH);
     }
 
     private class ButtonDuo extends JPanel {
