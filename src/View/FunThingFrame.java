@@ -58,7 +58,6 @@ class FunThingFrame extends JFrame {
         bottomPanel.add(new ButtonRow(backButton, acceptButton, vetoButton));
         bottomPanel.add(loadingLabel);
         this.add(bottomPanel, BorderLayout.SOUTH);
-        this.ftPanel.makeBlack();
         this.setBackground(Color.BLACK);
         this.setForeground(Color.BLACK);
     }

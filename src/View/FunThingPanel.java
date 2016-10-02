@@ -37,6 +37,7 @@ class FunThingPanel extends JPanel {
         this.info.setText("<html>" + replaceNewLines(thing.getInfoString()) + "</html>");
         this.info.setMaximumSize(new Dimension(50 * 15, 300));
         this.add(this.image);
+        this.makeBlack();
         this.add(this.title);
         JScrollPane scroll = new JScrollPane(this.info);
         scroll.setMinimumSize(new Dimension(50 * 15, 300));
