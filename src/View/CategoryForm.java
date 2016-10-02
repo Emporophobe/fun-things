@@ -84,6 +84,9 @@ public class CategoryForm extends JFrame {
                         costRangeWidget.getValue(),outsideWidget.getValue(), categoryWidget.getValue());
                 this.setVisible(false);
                 new FunThingFrame(thing).setVisible(true);
+                Preferences.loadData(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
+                        costRangeWidget.getValue(),distanceWidget.getValue(),outsideWidget.getValue(),
+                        categoryWidget.getValue());
                 this.dispose();
             } catch (NoMatchException e1) {
                 JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.",JOptionPane.ERROR_MESSAGE);
