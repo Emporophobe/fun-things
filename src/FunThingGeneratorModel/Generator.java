@@ -43,7 +43,7 @@ public class Generator  {
             case BOARDGAME :
                 return new BoardGame(participants, maxMinutes, maxCost);
             case RESTAURANT :
-                return new Restaurant(participants, maxMinutes, maxCost, true);
+                return new Restaurant(participants, maxMinutes, maxCost);
             case VIDEOGAME :
                 return new VideoGame(participants, maxMinutes, maxCost);
         }

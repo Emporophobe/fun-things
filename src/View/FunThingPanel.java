@@ -19,7 +19,7 @@ import java.net.URL;
 public class FunThingPanel extends JPanel {
     private ImagePanel image;
     private JLabel title;
-    private JTextPane info;
+    private JTextArea info;
 
     public FunThingPanel(IFunThing thing){
         BufferedImage image = new BufferedImage(View.WIDTH,View.HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -31,8 +31,9 @@ public class FunThingPanel extends JPanel {
         this.image = new ImagePanel(image);
         this.title = new JLabel(thing.getName());
         this.title.setFont(new Font("Arial", Font.BOLD, 50));
-        this.info = new JTextPane();
+        this.info = new JTextArea();
         this.info.setEditable(false);
+        this.info.setLineWrap(true);
         this.info.setText("<html>" + thing.getInfoString() +"</html>");
         this.setLayout(new GridBagLayout());
 
@@ -54,7 +55,8 @@ public class FunThingPanel extends JPanel {
         c.gridheight = 2;
         c.fill = GridBagConstraints.BOTH;
         JScrollPane scroll = new JScrollPane(this.info);
-        scroll.setMaximumSize(new Dimension(0,300));
+        scroll.setMinimumSize(new Dimension(0,300));
+        scroll.setMaximumSize(new Dimension(0, 300));
         this.add(scroll, c);
     }
 }
