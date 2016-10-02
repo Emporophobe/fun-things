@@ -13,6 +13,7 @@ public class BoardGame extends AbstractFunThing {
      * Name of this particular board game
      */
     private String name;
+    private String imageUrl;
 
     /**
      * Pick a random board game from the list of board games that satisfy the given options
@@ -37,6 +38,7 @@ public class BoardGame extends AbstractFunThing {
             if (potentialGame.getMinPlayers() <= participants && potentialGame.getMaxPlayers() >= participants
                     && potentialGame.getDuration() <= maxMinutes) {
                 this.name = potentialGame.getName();
+                this.imageUrl = potentialGame.getImageUrl();
                 satisfied = true;
             }
             counter++;
@@ -51,6 +53,11 @@ public class BoardGame extends AbstractFunThing {
     @Override
     public String getInfoString() {
         return this.name;
+    }
+
+    @Override
+    public String getImageSource() {
+        return this.imageUrl;
     }
 
     /**
@@ -71,7 +78,8 @@ public class BoardGame extends AbstractFunThing {
                     int minPlayers = Integer.parseInt(entryScanner.next());
                     int maxPlayers = Integer.parseInt(entryScanner.next());
                     int duration = Integer.parseInt(entryScanner.next());
-                    BoardGameEntry entry = new BoardGameEntry(name, minPlayers, maxPlayers, duration);
+                    String imageUrl = entryScanner.next();
+                    BoardGameEntry entry = new BoardGameEntry(name, minPlayers, maxPlayers, duration, imageUrl);
                     boardGames.add(entry);
                 } catch (Exception e) {
                     throw new IllegalStateException("Entry in csv file does not have the required parameters");

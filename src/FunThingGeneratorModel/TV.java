@@ -124,6 +124,10 @@ public class TV extends AbstractFunThing {
                 summary;
     }
 
+    @Override
+    public String getImageSource() {
+        return "http://www.publicdomainpictures.net/pictures/70000/velka/tv-isolated-background-clipart.jpg";}
+
     public static void main(String[] args) throws NoMatchException {
         TV tv = new TV(0, 90, 0);
         System.out.println(tv.getName());
