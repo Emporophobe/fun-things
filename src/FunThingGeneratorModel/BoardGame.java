@@ -2,24 +2,33 @@ package FunThingGeneratorModel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class BoardGame extends AbstractFunThing {
+    /**
+     * Static list of board games that we own, parsed from the csv file
+     */
     private static final List<BoardGameEntry> LIST_OF_BOARDGAMES = BoardGame.parseBoardGames();
+    /**
+     * Name of this particular board game
+     */
     private String name;
 
+    /**
+     * Pick a random board game from the list of board games that satisfy the given options
+     * @param participants the number of people that wish to play
+     * @param maxMinutes the longest time you wish to play
+     * @param maxCost board games don't have costs dummy
+     * @throws NoMatchException
+     */
     public BoardGame(int participants,
                      int maxMinutes,
-                     int maxCost,
-                     boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+                     int maxCost) throws NoMatchException {
+        super(participants, maxMinutes, maxCost);
     }
 
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         Collections.shuffle(LIST_OF_BOARDGAMES);
         boolean satisfied = false;
         int counter = 0;
@@ -44,10 +53,10 @@ public class BoardGame extends AbstractFunThing {
         return this.name;
     }
 
-    public static void main(String[] args) throws NoMatchException {
-        System.out.println(new BoardGame(2, 90, 0, false).getName());
-    }
-
+    /**
+     * Parses the board games from the csv file into a list of BoardGameEntries
+     * @return the list of BoardGameEntries
+     */
     private static List<BoardGameEntry> parseBoardGames() {
         List<BoardGameEntry> boardGames = new ArrayList<>();
         File file = new File("BoardGames.csv");
@@ -75,6 +84,4 @@ public class BoardGame extends AbstractFunThing {
         }
         return boardGames;
     }
-
-
 }

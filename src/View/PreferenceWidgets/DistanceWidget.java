@@ -45,4 +45,8 @@ public class DistanceWidget extends JPanel {
         this.add(maxLabel, constraints);
 
     }
+
+    public int getValue() {
+        return this.slider.getValue();
+    }
 }

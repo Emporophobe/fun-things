@@ -37,13 +37,13 @@ public class Generator  {
         //create the appropriate fun thing
         switch (c) {
             case MOVIE :
-                return new Movie(participants, maxMinutes, maxCost, isOutside);
+                return new Movie(participants, maxMinutes, maxCost);
             case TV :
-                return new TV(participants, maxMinutes, maxCost, isOutside);
+                return new TV(participants, maxMinutes, maxCost);
             case BOARDGAME :
-                return new BoardGame(participants, maxMinutes, maxCost, isOutside);
+                return new BoardGame(participants, maxMinutes, maxCost);
             case RESTAURANT :
-                return new Restaurant(participants, maxMinutes, maxCost, isOutside);
+                return new Restaurant(participants, maxMinutes, maxCost);
         }
 
         //you should never get here

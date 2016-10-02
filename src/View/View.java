@@ -4,6 +4,6 @@ package View;
  * Created by DJ on 10/1/2016.
  */
 public final class View {
-    public static int WIDTH = View.WIDTH;
-    public static int HEIGHT = View.HEIGHT;
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
 }
