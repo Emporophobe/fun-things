@@ -22,7 +22,7 @@ public class Restaurant extends AbstractFunThing {
     private JSONObject chosenRestaurant;
 
     Restaurant(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+        super(participants, maxMinutes, maxCost);
     }
 
 //    public static void main(String[] args) {
@@ -90,7 +90,7 @@ public class Restaurant extends AbstractFunThing {
     }
 
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         JSONObject json = httpRequest();
         try {
             JSONArray restaurants = json.getJSONArray("restaurants");
