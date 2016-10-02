@@ -15,6 +15,11 @@ public class FunThingFrame extends JFrame{
     JButton vetoButton;
     JButton acceptButton;
     FunThingPanel ftPanel;
+    JLabel loadingLabel;
+    JPanel bottomPanel = new JPanel(new GridLayout(0, 1));
+
+    ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
+
     public FunThingFrame(IFunThing thing) {
         vetoButton = new JButton("VETO!");
         acceptButton = new JButton("YES!");
@@ -36,8 +41,11 @@ public class FunThingFrame extends JFrame{
         }});
         ftPanel = new FunThingPanel(thing);
         this.add(ftPanel, BorderLayout.CENTER);
-        this.setSize(View.WIDTH,View.HEIGHT);
-        this.add(new ButtonDuo(acceptButton, vetoButton), BorderLayout.SOUTH);
+        this.setSize(View.WIDTH, View.HEIGHT);
+        this.loadingLabel = new JLabel("when pacman stops chomping, it's loading", loadingIcon, JLabel.CENTER);
+        bottomPanel.add(new ButtonDuo(acceptButton, vetoButton));
+        bottomPanel.add(loadingLabel);
+        this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
     private class ButtonDuo extends JPanel {
