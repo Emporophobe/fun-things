@@ -21,4 +21,6 @@ public interface IFunThing {
     String getInfoString();
 
 
+    String getImageSource();
+
 }

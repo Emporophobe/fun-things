@@ -6,7 +6,6 @@ import FunThingGeneratorModel.NoMatchException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * Created by DJ on 10/1/2016.
@@ -21,8 +20,11 @@ public class FunThingFrame extends JFrame{
         vetoButton.addActionListener(e->{try {
             IFunThing f = Generator.generate(Preferences.getPeople(),Preferences.getMinutes(),Preferences.getCost(),
                     Preferences.isOutside(),Preferences.getCategories());
+            System.out.println(f.getName());
+            ftPanel.setVisible(false);
             this.remove(ftPanel);
-            this.add(new FunThingPanel(f));
+            this.ftPanel = new FunThingPanel(f);
+            this.add(this.ftPanel);
             this.revalidate();
             this.repaint();
         } catch (NoMatchException e1) {
@@ -31,14 +33,15 @@ public class FunThingFrame extends JFrame{
         ftPanel = new FunThingPanel(thing);
         this.add(ftPanel, BorderLayout.CENTER);
         this.setSize(View.WIDTH,View.HEIGHT);
-        this.add(new ButtonDuo(acceptButton, vetoButton),BorderLayout.SOUTH);
+        this.add(new ButtonRow(acceptButton, vetoButton),BorderLayout.SOUTH);
     }
 
-    private class ButtonDuo extends JPanel {
-        public ButtonDuo(JButton leftButton, JButton rightButton) {
+    private class ButtonRow extends JPanel {
+        public ButtonRow(JButton ... buttons) {
             this.setLayout(new FlowLayout());
-            this.add(leftButton);
-            this.add(rightButton);
+            for(JButton button : buttons){
+                this.add(button);
+            }
         }
     }
 }

@@ -97,17 +97,4 @@ public class CategoryForm extends JFrame {
         this.add(innerPanel);
         this.setSize(View.WIDTH, View.HEIGHT);
     }
-
-    private class MockFunThing implements IFunThing{
-
-        @Override
-        public String getName() {
-            return "Watch cat videos.";
-        }
-
-        @Override
-        public String getInfoString() {
-            return "WATCH ALL THE CAT VIDEOS.";
-        }
-    }
 }
