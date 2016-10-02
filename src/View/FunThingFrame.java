@@ -17,6 +17,12 @@ public class FunThingFrame extends JFrame{
     public FunThingFrame(IFunThing thing) {
         vetoButton = new JButton("VETO!");
         acceptButton = new JButton("YES!");
+        acceptButton.addActionListener(e->{
+            JOptionPane.showMessageDialog(this, "CONGRATULATIONS!!! \n" +
+                    "You have selected a fun thing!!! \n" +
+                    "Go do the thing! \n" +
+                    "omg you're going to have so much fun");
+        });
         vetoButton.addActionListener(e->{try {
             IFunThing f = Generator.generate(Preferences.getPeople(),Preferences.getMinutes(),Preferences.getCost(),
                     Preferences.isOutside(),Preferences.getCategories());
