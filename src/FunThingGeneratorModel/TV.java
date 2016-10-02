@@ -25,11 +25,10 @@ public class TV extends AbstractFunThing {
      * @param participants the number of participants
      * @param maxMinutes   the max amount of time
      * @param maxCost      the max cost
-     * @param isOutside    do you have to go outside?
      * @throws NoMatchException if no suitable tv show is found
      */
-    public TV(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+    public TV(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+        super(participants, maxMinutes, maxCost);
     }
 
     /**
@@ -38,11 +37,10 @@ public class TV extends AbstractFunThing {
      * @param participants the number of participants
      * @param maxMinutes   the max amount of time
      * @param maxCost      the max cost
-     * @param isOutside    do you have to go outside?
      * @throws NoMatchException if no suitable tv show is found
      */
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
 
         //get a random show ID
         Random random = new Random();
@@ -123,7 +121,7 @@ public class TV extends AbstractFunThing {
     }
 
     public static void main(String[] args) throws NoMatchException {
-        TV tv = new TV(0, 90, 0, true);
+        TV tv = new TV(0, 90, 0);
         System.out.println(tv.getName());
         System.out.println(tv.getInfoString());
     }

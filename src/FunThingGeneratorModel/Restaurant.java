@@ -14,14 +14,14 @@ import java.net.URL;
  */
 public class Restaurant extends AbstractFunThing {
 
-    Restaurant(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+    Restaurant(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+        super(participants, maxMinutes, maxCost);
     }
 
     public static void main(String[] args) {
         try {
-            Restaurant foo = new Restaurant(0, 0, 0, false);
-            foo.generate(0, 0, 0, false);
+            Restaurant foo = new Restaurant(0, 0, 0);
+            foo.generate(0, 0, 0);
         } catch (NoMatchException e) {
             e.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class Restaurant extends AbstractFunThing {
     }
 
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         JSONObject json = httpRequest();
 
     }

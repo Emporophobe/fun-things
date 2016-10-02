@@ -25,11 +25,10 @@ public class Movie extends AbstractFunThing{
      * @param participants         number of participants
      * @param maxMinutes           max number of minutes
      * @param maxCost              max cost
-     * @param isOutside            does it involve going outside
      * @throws NoMatchException    if no valid match is found
      */
-    public Movie(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+    public Movie(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+        super(participants, maxMinutes, maxCost);
     }
 
     /**
@@ -39,11 +38,10 @@ public class Movie extends AbstractFunThing{
      * @param participants         the number of participants
      * @param maxMinutes           the maximum amount of time
      * @param maxCost              the maximum cost
-     * @param isOutside            do you want to go outside
      * @throws NoMatchException    if there is no match after 50 tries
      */
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
 
         //keep track of how many tries
         int counter = 0;
@@ -109,7 +107,7 @@ public class Movie extends AbstractFunThing{
     }
 
     public static void main(String[] args) throws IOException, JSONException, NoMatchException {
-        Movie movie = new Movie(0, 100, 0, true);
+        Movie movie = new Movie(0, 100, 0);
         System.out.println(movie.getName());
         System.out.println(movie.getInfoString());
     }

@@ -6,11 +6,11 @@ package FunThingGeneratorModel;
 public class VideoGame extends AbstractFunThing {
 
     VideoGame(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+        super(participants, maxMinutes, maxCost);
     }
 
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
 
     }
 
