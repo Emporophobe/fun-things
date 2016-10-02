@@ -33,7 +33,7 @@ public class BoardGame extends AbstractFunThing {
         Collections.shuffle(LIST_OF_BOARDGAMES);
         boolean satisfied = false;
         int counter = 0;
-        while(!satisfied) {
+        while(!satisfied && counter < LIST_OF_BOARDGAMES.size()) {
             BoardGameEntry potentialGame = LIST_OF_BOARDGAMES.get(counter);
             if (potentialGame.getMinPlayers() <= participants && potentialGame.getMaxPlayers() >= participants
                     && potentialGame.getDuration() <= maxMinutes) {
@@ -42,6 +42,9 @@ public class BoardGame extends AbstractFunThing {
                 satisfied = true;
             }
             counter++;
+        }
+        if (!satisfied) {
+            throw new NoMatchException("No board games are available for those parameters");
         }
     }
 
