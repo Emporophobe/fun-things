@@ -5,6 +5,8 @@ import com.sun.javafx.iio.ImageStorage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -31,7 +33,7 @@ public class FunThingPanel extends JPanel {
         this.title.setFont(new Font("Arial", Font.BOLD, 50));
         this.info = new JTextPane();
         this.info.setEditable(false);
-        this.info.setText(thing.getInfoString());
+        this.info.setText("<html>" + thing.getInfoString() +"</html>");
         this.setLayout(new GridBagLayout());
 
         GridBagConstraints c = new GridBagConstraints();
