@@ -46,6 +46,8 @@ public class Generator  {
                 return new Restaurant(participants, maxMinutes, maxCost);
             case VIDEOGAME :
                 return new VideoGame(participants, maxMinutes, maxCost);
+            case RECIPE :
+                return new Recipe(participants, maxMinutes, maxCost);
         }
 
         //you should never get here
