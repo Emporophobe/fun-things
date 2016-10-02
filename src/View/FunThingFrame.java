@@ -36,15 +36,16 @@ public class FunThingFrame extends JFrame{
         ftPanel = new FunThingPanel(thing);
         this.add(ftPanel, BorderLayout.CENTER);
         this.setSize(View.WIDTH,View.HEIGHT);
-        this.add(new ButtonDuo(acceptButton, vetoButton),BorderLayout.SOUTH);
-        this.add(backButton, BorderLayout.NORTH);
+        this.add(new ButtonRow(backButton, acceptButton, vetoButton),BorderLayout.SOUTH);
+
     }
 
-    private class ButtonDuo extends JPanel {
-        public ButtonDuo(JButton leftButton, JButton rightButton) {
+    private class ButtonRow extends JPanel {
+        public ButtonRow(JButton ... buttons) {
             this.setLayout(new FlowLayout());
-            this.add(leftButton);
-            this.add(rightButton);
+            for (JButton button : buttons) {
+                this.add(button);
+            }
         }
     }
 }
