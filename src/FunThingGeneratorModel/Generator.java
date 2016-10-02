@@ -32,28 +32,38 @@ public class Generator {
 
         //make a random number to select a random category
         Random random = new Random();
-        int randomInt = random.nextInt(categories.size());
-        Category c = categories.get(randomInt);
 
-        //create the appropriate fun thing
-        switch (c) {
-            case MOVIE:
-                return new Movie(participants, maxMinutes, maxCost, maxDistance);
-            case TV:
-                return new TV(participants, maxMinutes, maxCost, maxDistance);
-            case BOARDGAME:
-                return new BoardGame(participants, maxMinutes, maxCost, maxDistance);
-            case RESTAURANT:
-                return new Restaurant(participants, maxMinutes, maxCost, maxDistance);
-            case VIDEOGAME:
-                return new VideoGame(participants, maxMinutes, maxCost, maxDistance);
-            case RECIPE:
-                return new Recipe(participants, maxMinutes, maxCost, maxDistance);
-            case OUTSIDE :
-                return new Outside(participants, maxMinutes, maxCost, maxDistance);
+        while (!categories.isEmpty()) {
+            int randomInt = random.nextInt(categories.size());
+            Category c = categories.get(randomInt);
+            categories.remove(randomInt);
+            try {
+                //create the appropriate fun thing
+                switch (c) {
+                    case MOVIE:
+                        return new Movie(participants, maxMinutes, maxCost, maxDistance);
+                    case TV:
+                        return new TV(participants, maxMinutes, maxCost, maxDistance);
+                    case BOARDGAME:
+                        return new BoardGame(participants, maxMinutes, maxCost, maxDistance);
+                    case RESTAURANT:
+                        return new Restaurant(participants, maxMinutes, maxCost, maxDistance);
+                    case VIDEOGAME:
+                        return new VideoGame(participants, maxMinutes, maxCost, maxDistance);
+                    case RECIPE:
+                        return new Recipe(participants, maxMinutes, maxCost, maxDistance);
+                    case OUTSIDE:
+                        return new Outside(participants, maxMinutes, maxCost, maxDistance);
+                    default:
+                        //you should never get here
+                        return null;
+                }
+            } catch (NoMatchException ignored) {
+                // Catch if the category we tried couldn't find anything. If so, continue the loop since there are other
+                // potential categories
+            }
         }
-
-        //you should never get here
-        return null;
+        // If we're here then all the categories have returned nothing.
+        throw new NoMatchException("No matches for given parameters!");
     }
 }
