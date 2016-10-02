@@ -39,11 +39,17 @@ class Restaurant extends AbstractFunThing {
     /**
      * Get the latitude/longitude of the user
      * TODO: make this actually work
+     * Right new we slightly randomize the position to avoid getting the same closest restaurants each time.
      *
      * @return A pair (latitude, longitude)
      */
     private Pair<Double, Double> getCoords() {
-        return new Pair<>(42.338516, -71.092326);
+        //return new Pair<>(42.338516, -71.092326);
+        Random r = new Random();
+        Double lat = 42.33 + (r.nextDouble() / 100);
+        Double lon = -71.09 - (r.nextDouble() / 100);
+
+        return new Pair<>(lat, lon);
     }
 
     /**
@@ -60,7 +66,7 @@ class Restaurant extends AbstractFunThing {
         Pair<Double, Double> coords = getCoords();
 
         String zomatoApiBaseUrl = "https://developers.zomato.com/api/v2.1/";
-        String query = String.format("search?start=%d&count=100&lat=%f&lon=%f&radius=%d",
+        String query = String.format("search?start=%d&count=100&lat=%f&lon=%f&radius=%d&sort=rating",
                 offset, coords.getKey(), coords.getValue(), maxDistance * 1000);
         String url = zomatoApiBaseUrl + query;
 
@@ -136,9 +142,12 @@ class Restaurant extends AbstractFunThing {
     @Override
     public String getInfoString() {
         try {
-            return chosenRestaurant.get("cuisines") +
-                    "\n\n" +
-                    ((JSONObject) chosenRestaurant.get("location")).get("address");
+            return chosenRestaurant.get("cuisines")
+                    + "\n\n"
+                    + ((JSONObject) chosenRestaurant.get("location")).get("address")
+                    + "\n\n"
+                    + " Website: "
+                    + "a href=" + chosenRestaurant.get("menu_url") + "Click for menu" + "</a>";
         } catch (JSONException e) {
             e.printStackTrace();
             return "NO INFO";
@@ -147,6 +156,11 @@ class Restaurant extends AbstractFunThing {
 
     @Override
     public String getImageSource() {
-        return "https://pixabay.com/static/uploads/photo/2013/07/13/11/56/cutlery-158984_960_720.png";
+        try {
+            return chosenRestaurant.getString("thumb");
+        } catch (JSONException e) {
+            return "https://pixabay.com/static/uploads/photo/2013/07/13/11/56/cutlery-158984_960_720.png";
+            //e.printStackTrace();
+        }
     }
 }
