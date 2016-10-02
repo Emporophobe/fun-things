@@ -24,4 +24,8 @@ public class CostRangeWidget extends JPanel {
         slider.setPaintLabels(true);
         slider.setPaintTicks(true);
     }
+
+    public int getValue() {
+        return slider.getValue();
+    }
 }
