@@ -82,9 +82,6 @@ public class Movie extends AbstractFunThing{
         if (counter >= 50) {
             throw new NoMatchException("No movie found");
         }
-
-
-
     }
 
     /**
