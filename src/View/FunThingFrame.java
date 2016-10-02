@@ -38,8 +38,9 @@ class FunThingFrame extends JFrame {
             try {
                 IFunThing f = Generator.generate(Preferences.getPeople(), Preferences.getMinutes(), Preferences.getCost(),
                         Preferences.isOutside(), Preferences.getDistance(), Preferences.getCategories());
-                this.remove(ftPanel);
-                this.add(new FunThingPanel(f));
+                remove(ftPanel);
+                this.ftPanel =new FunThingPanel(f);
+                this.add(this.ftPanel);
                 this.revalidate();
                 this.repaint();
             } catch (NoMatchException e1) {
