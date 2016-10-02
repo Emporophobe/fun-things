@@ -72,4 +72,9 @@ public class Recipe extends AbstractFunThing {
         return "Title: " + this.title + "\n"
                 + "Source: " + this.sourceUrl;
     }
+
+    @Override
+    public String getImageSource() {
+        return pictureUrl;
+    }
 }
