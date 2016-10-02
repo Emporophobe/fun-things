@@ -1,7 +1,11 @@
 package FunThingGeneratorModel;
 
-import java.sql.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class BoardGame extends AbstractFunThing {
     private static final List<BoardGameEntry> LIST_OF_BOARDGAMES = BoardGame.parseBoardGames();
