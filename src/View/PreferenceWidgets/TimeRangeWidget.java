@@ -16,4 +16,8 @@ public class TimeRangeWidget extends JPanel {
         this.add(minuteSpinner);
         this.add(row);
     }
+
+    public int getValue() {
+        return (int)minuteSpinner.getValue();
+    }
 }

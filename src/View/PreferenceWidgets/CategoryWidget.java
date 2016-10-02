@@ -10,6 +10,8 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by DJ on 10/1/2016.
@@ -49,11 +51,24 @@ public class CategoryWidget extends JPanel {
         }
     }
 
+    public List<Category> getValue() {
+        List<Category> lst = new ArrayList<Category>();
+        for(Component c : this.getComponents()){
+            CategoryWidgette w = (CategoryWidgette)c;
+            if(w.checkBox.isSelected()){
+                lst.add(w.category);
+            }
+        }
+        return lst;
+    }
+
     private class CategoryWidgette extends JPanel {
         private JCheckBox checkBox;
+        private Category category;
 
         CategoryWidgette(Category c) {
             this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+            this.category = c;
             checkBox = new JCheckBox(c.name());
             this.add(checkBox);
         }

@@ -1,5 +1,6 @@
 package View;
 
+import FunThingGeneratorModel.Generator;
 import FunThingGeneratorModel.IFunThing;
 import View.PreferenceWidgets.*;
 
@@ -54,11 +55,16 @@ public class CategoryForm extends JFrame {
         JLabel preferences = new JLabel("PREFERENCES: ");
         preferences.setFont(new Font("Serif", Font.BOLD, 50));
         preferences.setAlignmentX(Component.CENTER_ALIGNMENT);
-        peopleRangeRow.add(new PeopleRangeWidget());
-        timeRangeRow.add(new TimeRangeWidget());
-        costRow.add(new CostRangeWidget());
-        distanceRow.add(new DistanceWidget());
-        outsideRow.add(new OutsideOrNahWidget());
+        PeopleRangeWidget peopleRangeWidget = new PeopleRangeWidget();
+        TimeRangeWidget timeRangeWidget = new TimeRangeWidget();
+        CostRangeWidget costRangeWidget = new CostRangeWidget();
+        DistanceWidget distanceWidget = new DistanceWidget();
+        OutsideOrNahWidget outsideWidget = new OutsideOrNahWidget();
+        peopleRangeRow.add(peopleRangeWidget);
+        timeRangeRow.add(timeRangeWidget);
+        costRow.add(costRangeWidget);
+        distanceRow.add(distanceWidget);
+        outsideRow.add(outsideWidget);
         categoryRow.add(categoryWidget);
         innerPanel.add(preferences, BorderLayout.NORTH);
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
@@ -72,7 +78,9 @@ public class CategoryForm extends JFrame {
         this.categoryWidget.addEnablerToChildren(this.entertainMeButton);
         this.entertainMeButton.addActionListener(e -> {
             this.setVisible(false);
-            new FunThingFrame(new MockFunThing()).setVisible(true);
+            IFunThing thing = new Generator().generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
+                    costRangeWidget.getValue(),outsideWidget.getValue(), categoryWidget.getValue());
+            //new FunThingFrame(thing).setVisible(true);
             this.dispose();
         });
         this.entertainMeButton.setEnabled(false);
