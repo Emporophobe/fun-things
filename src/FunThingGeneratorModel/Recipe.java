@@ -21,8 +21,8 @@ class Recipe extends AbstractFunThing {
      * @param maxCost      max cost
      * @throws NoMatchException if no valid match is found
      */
-    Recipe(int participants, int maxMinutes, int maxCost) throws NoMatchException {
-        super(participants, maxMinutes, maxCost);
+    Recipe(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
+        super(participants, maxMinutes, maxCost, maxDistance);
     }
 
     /**
@@ -35,7 +35,7 @@ class Recipe extends AbstractFunThing {
      * @throws NoMatchException if there is no match after 50 tries
      */
     @Override
-    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
         try {
             //get a random recipe
             String RANDOM_RECIPE_API = "http://food2fork.com/api/search?key=04c93ab22c6796462728f3688afd0417";

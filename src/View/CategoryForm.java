@@ -81,7 +81,7 @@ public class CategoryForm extends JFrame {
 
             try {
                 IFunThing thing = Generator.generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
-                        costRangeWidget.getValue(), outsideWidget.getValue(), categoryWidget.getValue());
+                        costRangeWidget.getValue(), outsideWidget.getValue(), distanceWidget.getValue(), categoryWidget.getValue());
 
                 this.setVisible(false);
                 new FunThingFrame(thing).setVisible(true);

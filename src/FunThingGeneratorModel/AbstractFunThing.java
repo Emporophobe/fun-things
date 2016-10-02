@@ -16,15 +16,18 @@ abstract class AbstractFunThing implements IFunThing {
      */
     AbstractFunThing(int participants,
                      int maxMinutes,
-                     int maxCost) throws NoMatchException {
+                     int maxCost,
+                     int maxDistance) throws NoMatchException {
         generate(participants,
                 maxMinutes,
-                maxCost);
+                maxCost,
+                maxDistance);
     }
 
     abstract void generate(int participants,
                            int maxMinutes,
-                           int maxCost) throws NoMatchException;
+                           int maxCost,
+                           int maxDistance) throws NoMatchException;
 
     @Override
     public abstract String getName();

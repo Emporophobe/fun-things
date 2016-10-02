@@ -28,8 +28,9 @@ class BoardGame extends AbstractFunThing {
      */
     BoardGame(int participants,
               int maxMinutes,
-              int maxCost) throws NoMatchException {
-        super(participants, maxMinutes, maxCost);
+              int maxCost,
+              int maxDistance) throws NoMatchException {
+        super(participants, maxMinutes, maxCost, maxDistance);
     }
 
     /**
@@ -67,7 +68,7 @@ class BoardGame extends AbstractFunThing {
     }
 
     @Override
-    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
         Collections.shuffle(LIST_OF_BOARDGAMES);
         boolean satisfied = false;
         int counter = 0;

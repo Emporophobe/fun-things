@@ -19,8 +19,9 @@ public class VideoGame extends AbstractFunThing {
 
     VideoGame(int participants,
               int maxMinutes,
-              int maxCost) throws NoMatchException {
-        super(participants, maxMinutes, maxCost);
+              int maxCost,
+              int maxDistance) throws NoMatchException {
+        super(participants, maxMinutes, maxCost, maxDistance);
     }
 
     private static List<VideoGameEntry> parseVideoGames() {
@@ -53,14 +54,9 @@ public class VideoGame extends AbstractFunThing {
         return videoGames;
     }
 
-    public static void main(String[] args) throws NoMatchException {
-        System.out.println(new VideoGame(1, 0, 0).getInfoString());
-
-    }
-
     //FIX THIS
     @Override
-    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
         Collections.shuffle(LIST_OF_VIDEOGAMES);
         boolean satisfied = false;
         int counter = 0;

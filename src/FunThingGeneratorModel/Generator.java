@@ -10,9 +10,10 @@ public class Generator {
 
     /**
      * @param participants the number of participants
-     * @param maxMinutes   the maximum time
-     * @param maxCost      the maximum cost
+     * @param maxMinutes   the maximum time (in minutes)
+     * @param maxCost      the maximum cost (in arbitrary dollar sign amounts)
      * @param isOutside    is it outside?
+     * @param maxDistance  how far to go? (in km)
      * @param categories   the possible categories
      * @return a random fun thing from the categories given
      * @throws NoMatchException if the list of categories is empty
@@ -21,6 +22,7 @@ public class Generator {
                                      int maxMinutes,
                                      int maxCost,
                                      boolean isOutside,
+                                     int maxDistance,
                                      List<Category> categories) throws NoMatchException {
 
         //if the list is empty (it should never be able to be empty)
@@ -36,17 +38,17 @@ public class Generator {
         //create the appropriate fun thing
         switch (c) {
             case MOVIE:
-                return new Movie(participants, maxMinutes, maxCost);
+                return new Movie(participants, maxMinutes, maxCost, maxDistance);
             case TV:
-                return new TV(participants, maxMinutes, maxCost);
+                return new TV(participants, maxMinutes, maxCost, maxDistance);
             case BOARDGAME:
-                return new BoardGame(participants, maxMinutes, maxCost);
+                return new BoardGame(participants, maxMinutes, maxCost, maxDistance);
             case RESTAURANT:
-                return new Restaurant(participants, maxMinutes, maxCost);
+                return new Restaurant(participants, maxMinutes, maxCost, maxDistance);
             case VIDEOGAME:
-                return new VideoGame(participants, maxMinutes, maxCost);
+                return new VideoGame(participants, maxMinutes, maxCost, maxDistance);
             case RECIPE:
-                return new Recipe(participants, maxMinutes, maxCost);
+                return new Recipe(participants, maxMinutes, maxCost, maxDistance);
         }
 
         //you should never get here

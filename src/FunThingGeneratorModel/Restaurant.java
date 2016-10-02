@@ -21,8 +21,8 @@ class Restaurant extends AbstractFunThing {
 
     private JSONObject chosenRestaurant;
 
-    Restaurant(int participants, int maxMinutes, int maxCost) throws NoMatchException {
-        super(participants, maxMinutes, maxCost);
+    Restaurant(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
+        super(participants, maxMinutes, maxCost, maxDistance);
     }
 
 //    public static void main(String[] args) {
@@ -49,17 +49,19 @@ class Restaurant extends AbstractFunThing {
     /**
      * Make an API call to Zomato to get restaurants in the area.
      *
-     * @param maxOffset The search index to start at. The API can only send 20 results at a time so we send it an offset
-     *                  to start at. The maximum for this is 80.
+     * @param maxOffset   The search index to start at. The API can only send 20 results at a time so we send it an offset
+     *                    to start at. The maximum for this is 80.
+     * @param maxDistance The distance to travel, in km.
      * @return The JSON response
      */
-    private JSONObject httpRequest(int maxOffset) {
+    private JSONObject httpRequest(int maxOffset, int maxDistance) {
 
         int offset = new Random().nextInt(maxOffset + 1);
         Pair<Double, Double> coords = getCoords();
 
         String zomatoApiBaseUrl = "https://developers.zomato.com/api/v2.1/";
-        String query = String.format("search?start=%d&count=100&lat=%f&lon=%f&radius=%d", offset, coords.getKey(), coords.getValue(), 5000);
+        String query = String.format("search?start=%d&count=100&lat=%f&lon=%f&radius=%d",
+                offset, coords.getKey(), coords.getValue(), maxDistance * 1000);
         String url = zomatoApiBaseUrl + query;
 
         try {
@@ -94,8 +96,8 @@ class Restaurant extends AbstractFunThing {
     }
 
     @Override
-    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
-        JSONObject json = httpRequest(80);
+    void generate(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
+        JSONObject json = httpRequest(80, maxDistance);
         try {
             JSONArray restaurants;
             if (json != null) {

@@ -26,8 +26,8 @@ public class Movie extends AbstractFunThing {
      * @param maxCost      max cost
      * @throws NoMatchException if no valid match is found
      */
-    Movie(int participants, int maxMinutes, int maxCost) throws NoMatchException {
-        super(participants, maxMinutes, maxCost);
+    Movie(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
+        super(participants, maxMinutes, maxCost, maxDistance);
     }
 
     /**
@@ -40,7 +40,7 @@ public class Movie extends AbstractFunThing {
      * @throws NoMatchException if there is no match after 50 tries
      */
     @Override
-    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
 
         //keep track of how many tries
         int counter = 0;

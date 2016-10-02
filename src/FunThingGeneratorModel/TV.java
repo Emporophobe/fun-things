@@ -25,14 +25,8 @@ public class TV extends AbstractFunThing {
      * @param maxCost      the max cost
      * @throws NoMatchException if no suitable tv show is found
      */
-    TV(int participants, int maxMinutes, int maxCost) throws NoMatchException {
-        super(participants, maxMinutes, maxCost);
-    }
-
-    public static void main(String[] args) throws NoMatchException {
-        TV tv = new TV(0, 90, 0);
-        System.out.println(tv.getName());
-        System.out.println(tv.getInfoString());
+    TV(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
+        super(participants, maxMinutes, maxCost, maxDistance);
     }
 
     /**
@@ -44,7 +38,7 @@ public class TV extends AbstractFunThing {
      * @throws NoMatchException if no suitable tv show is found
      */
     @Override
-    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost, int maxDistance) throws NoMatchException {
 
 
         //keep track of how many tries
