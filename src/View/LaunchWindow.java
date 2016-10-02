@@ -45,7 +45,7 @@ public class LaunchWindow extends JFrame {
         leggoButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.setSize(800, 600);
+        this.setSize(View.WIDTH, View.HEIGHT);
         this.add(myPanel);
     }
 }

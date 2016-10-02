@@ -1,6 +1,8 @@
 package View;
 
+import FunThingGeneratorModel.Generator;
 import FunThingGeneratorModel.IFunThing;
+import FunThingGeneratorModel.NoMatchException;
 import View.PreferenceWidgets.*;
 
 import javax.swing.*;
@@ -54,11 +56,16 @@ public class CategoryForm extends JFrame {
         JLabel preferences = new JLabel("PREFERENCES: ");
         preferences.setFont(new Font("Serif", Font.BOLD, 50));
         preferences.setAlignmentX(Component.CENTER_ALIGNMENT);
-        peopleRangeRow.add(new PeopleRangeWidget());
-        timeRangeRow.add(new TimeRangeWidget());
-        costRow.add(new CostRangeWidget());
-        distanceRow.add(new DistanceWidget());
-        outsideRow.add(new OutsideOrNahWidget());
+        PeopleRangeWidget peopleRangeWidget = new PeopleRangeWidget();
+        TimeRangeWidget timeRangeWidget = new TimeRangeWidget();
+        CostRangeWidget costRangeWidget = new CostRangeWidget();
+        DistanceWidget distanceWidget = new DistanceWidget();
+        OutsideOrNahWidget outsideWidget = new OutsideOrNahWidget();
+        peopleRangeRow.add(peopleRangeWidget);
+        timeRangeRow.add(timeRangeWidget);
+        costRow.add(costRangeWidget);
+        distanceRow.add(distanceWidget);
+        outsideRow.add(outsideWidget);
         categoryRow.add(categoryWidget);
         innerPanel.add(preferences, BorderLayout.NORTH);
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
@@ -71,13 +78,24 @@ public class CategoryForm extends JFrame {
         innerPanel.add(this.entertainMeButton);
         this.categoryWidget.addEnablerToChildren(this.entertainMeButton);
         this.entertainMeButton.addActionListener(e -> {
-            this.setVisible(false);
-            new FunThingFrame(new MockFunThing()).setVisible(true);
-            this.dispose();
+
+            try {
+                IFunThing thing = Generator.generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
+                        costRangeWidget.getValue(),outsideWidget.getValue(), categoryWidget.getValue());
+                this.setVisible(false);
+                new FunThingFrame(thing).setVisible(true);
+                Preferences.loadData(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
+                        costRangeWidget.getValue(),distanceWidget.getValue(),outsideWidget.getValue(),
+                        categoryWidget.getValue());
+                this.dispose();
+            } catch (NoMatchException e1) {
+                JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.",JOptionPane.ERROR_MESSAGE);
+            }
+
         });
         this.entertainMeButton.setEnabled(false);
         this.add(innerPanel);
-        this.setSize(800, 600);
+        this.setSize(View.WIDTH, View.HEIGHT);
     }
 
     private class MockFunThing implements IFunThing{
