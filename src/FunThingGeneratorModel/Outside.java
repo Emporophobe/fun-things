@@ -89,7 +89,7 @@ public class Outside extends AbstractFunThing{
                 String duration = activity.getString("duration");
                 String coords = activity.getString("latLng");
 
-                if (Integer.parseInt(price.substring(1)) <= maxCost ) {
+                if (Integer.parseInt(price.substring(1)) <= maxCost * 25 ) {
                     this.duration = duration;
                     this.title = activity.getString("title");
                     this.price = price;
