@@ -2,6 +2,7 @@ package View;
 
 import FunThingGeneratorModel.Generator;
 import FunThingGeneratorModel.IFunThing;
+import FunThingGeneratorModel.NoMatchException;
 import View.PreferenceWidgets.*;
 
 import javax.swing.*;
@@ -77,11 +78,17 @@ public class CategoryForm extends JFrame {
         innerPanel.add(this.entertainMeButton);
         this.categoryWidget.addEnablerToChildren(this.entertainMeButton);
         this.entertainMeButton.addActionListener(e -> {
-            this.setVisible(false);
-            IFunThing thing = new Generator().generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
-                    costRangeWidget.getValue(),outsideWidget.getValue(), categoryWidget.getValue());
-            //new FunThingFrame(thing).setVisible(true);
-            this.dispose();
+
+            try {
+                IFunThing thing = Generator.generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
+                        costRangeWidget.getValue(),outsideWidget.getValue(), categoryWidget.getValue());
+                this.setVisible(false);
+                new FunThingFrame(thing).setVisible(true);
+                this.dispose();
+            } catch (NoMatchException e1) {
+                JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.",JOptionPane.ERROR_MESSAGE);
+            }
+
         });
         this.entertainMeButton.setEnabled(false);
         this.add(innerPanel);
