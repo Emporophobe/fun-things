@@ -15,9 +15,10 @@ import java.net.URL;
 class FunThingPanel extends JPanel {
     private ImagePanel image;
     private JLabel title;
-    private JTextArea info;
+    private JTextPane info;
 
     FunThingPanel(IFunThing thing) {
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         BufferedImage image = new BufferedImage(View.WIDTH, View.HEIGHT, BufferedImage.TYPE_INT_RGB);
         try {
             image = ImageIO.read(new URL(thing.getImageSource()));
@@ -25,34 +26,48 @@ class FunThingPanel extends JPanel {
             e.printStackTrace();
         }
         this.image = new ImagePanel(image, 400, 300);
-        this.title = new JLabel(thing.getName());
+        this.image.setAlignmentX(CENTER_ALIGNMENT);
+        this.title = new JLabel(wordWrapper(thing.getName()));
         this.title.setFont(new Font("Arial", Font.BOLD, 50));
-        this.info = new JTextArea();
+        this.title.setHorizontalAlignment(JLabel.CENTER);
+        this.title.setAlignmentX(CENTER_ALIGNMENT);
+        this.info = new JTextPane();
+        this.info.setContentType("text/html");
         this.info.setEditable(false);
-        this.info.setLineWrap(true);
-        this.info.setText("<html>" + thing.getInfoString() + "</html>");
-        this.setLayout(new GridBagLayout());
-
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.fill = GridBagConstraints.BOTH;
-        this.add(this.image, c);
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        this.add(this.title, c);
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 1;
-        c.gridheight = 2;
-        c.fill = GridBagConstraints.BOTH;
+        this.info.setText("<html>" + replaceNewLines(thing.getInfoString()) + "</html>");
+        this.info.setMaximumSize(new Dimension(50 * 15, 300));
+        this.add(this.image);
+        this.add(this.title);
         JScrollPane scroll = new JScrollPane(this.info);
-        scroll.setMinimumSize(new Dimension(0, 300));
-        scroll.setMaximumSize(new Dimension(0, 300));
-        this.add(scroll, c);
+        scroll.setMinimumSize(new Dimension(50 * 15, 300));
+        scroll.setMaximumSize(new Dimension(50 * 15, 300));
+        scroll.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(scroll);
+    }
+
+    private String replaceNewLines(String infoString) {
+        return infoString.replaceAll("\n", "<br>");
+    }
+
+    private String wordWrapper(String name) {
+        StringBuilder b = new StringBuilder();
+        b.append("<html><center>");
+        String[] split = name.split(" ");
+        int charCount = 0;
+        for (int i = 0; i < split.length; i++) {
+            String word = split[i];
+            charCount += word.length();
+            b.append(word);
+            if (charCount > 15 && i != 0) {
+                b.append("<br>");
+                charCount = 0;
+            }
+            if(i != split.length - 1){
+                b.append(" ");
+            }
+
+        }
+        b.append("</center></html>");
+        return b.toString();
     }
 }
