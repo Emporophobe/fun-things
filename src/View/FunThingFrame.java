@@ -6,18 +6,34 @@ import FunThingGeneratorModel.NoMatchException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * Created by DJ on 10/1/2016.
  */
 public class FunThingFrame extends JFrame{
+    JButton backButton;
     JButton vetoButton;
     JButton acceptButton;
     FunThingPanel ftPanel;
+    JLabel loadingLabel;
+    JPanel bottomPanel = new JPanel(new GridLayout(0, 1));
+
+    ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
+
     public FunThingFrame(IFunThing thing) {
+        backButton = new JButton("BACK");
+        backButton.addActionListener(e->{
+            this.setVisible(false);
+            new CategoryForm().setVisible(true);
+        });
         vetoButton = new JButton("VETO!");
         acceptButton = new JButton("YES!");
+        acceptButton.addActionListener(e->{
+            JOptionPane.showMessageDialog(this, "CONGRATULATIONS!!! \n" +
+                    "You have selected a fun thing!!! \n" +
+                    "Go do the thing! \n" +
+                    "omg you're going to have so much fun");
+        });
         vetoButton.addActionListener(e->{try {
             IFunThing f = Generator.generate(Preferences.getPeople(),Preferences.getMinutes(),Preferences.getCost(),
                     Preferences.isOutside(),Preferences.getCategories());
@@ -30,15 +46,19 @@ public class FunThingFrame extends JFrame{
         }});
         ftPanel = new FunThingPanel(thing);
         this.add(ftPanel, BorderLayout.CENTER);
-        this.setSize(View.WIDTH,View.HEIGHT);
-        this.add(new ButtonDuo(acceptButton, vetoButton),BorderLayout.SOUTH);
+        this.setSize(View.WIDTH, View.HEIGHT);
+        this.loadingLabel = new JLabel("when pacman stops chomping, it's loading", loadingIcon, JLabel.CENTER);
+        bottomPanel.add(new ButtonRow(backButton, acceptButton, vetoButton));
+        bottomPanel.add(loadingLabel);
+        this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    private class ButtonDuo extends JPanel {
-        public ButtonDuo(JButton leftButton, JButton rightButton) {
+    private class ButtonRow extends JPanel {
+        public ButtonRow(JButton ... buttons) {
             this.setLayout(new FlowLayout());
-            this.add(leftButton);
-            this.add(rightButton);
+            for (JButton button : buttons) {
+                this.add(button);
+            }
         }
     }
 }

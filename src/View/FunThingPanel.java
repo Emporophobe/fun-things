@@ -24,11 +24,11 @@ public class FunThingPanel extends JPanel {
     public FunThingPanel(IFunThing thing){
         BufferedImage image = new BufferedImage(View.WIDTH,View.HEIGHT, BufferedImage.TYPE_INT_RGB);
         try {
-            image = ImageIO.read(new File("testImage.jpg"));
+            image = ImageIO.read(new URL(thing.getImageSource()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.image = new ImagePanel(image);
+        this.image = new ImagePanel(image, 400, 300);
         this.title = new JLabel(thing.getName());
         this.title.setFont(new Font("Arial", Font.BOLD, 50));
         this.info = new JTextArea();

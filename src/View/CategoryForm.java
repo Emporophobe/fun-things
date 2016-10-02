@@ -57,7 +57,7 @@ public class CategoryForm extends JFrame {
         this.categoryRow.add(categoryLabel);
 
         JPanel innerPanel = new JPanel();
-        JLabel preferences = new JLabel("PREFERENCES: ");
+        JLabel preferences = new JLabel("       PREFERENCES:", JLabel.CENTER);
         preferences.setFont(new Font("Serif", Font.BOLD, 50));
         preferences.setAlignmentX(Component.CENTER_ALIGNMENT);
         PeopleRangeWidget peopleRangeWidget = new PeopleRangeWidget();
@@ -102,18 +102,5 @@ public class CategoryForm extends JFrame {
         this.entertainMeButton.setEnabled(false);
         this.add(innerPanel);
         this.setSize(View.WIDTH, View.HEIGHT);
-    }
-
-    private class MockFunThing implements IFunThing{
-
-        @Override
-        public String getName() {
-            return "Watch cat videos.";
-        }
-
-        @Override
-        public String getInfoString() {
-            return "WATCH ALL THE CAT VIDEOS.";
-        }
     }
 }
