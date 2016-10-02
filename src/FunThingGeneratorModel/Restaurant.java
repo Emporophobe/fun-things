@@ -21,7 +21,7 @@ public class Restaurant extends AbstractFunThing {
 
     private JSONObject chosenRestaurant;
 
-    Restaurant(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    Restaurant(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         super(participants, maxMinutes, maxCost);
     }
 
