@@ -49,13 +49,17 @@ public class Restaurant extends AbstractFunThing {
     /**
      * Make an API call to Zomato to get restaurants in the area.
      *
+     * @param maxOffset The search index to start at. The API can only send 20 results at a time so we send it an offset
+     *                  to start at. The maximum for this is 80.
      * @return The JSON response
      */
-    private JSONObject httpRequest() {
+    private JSONObject httpRequest(int maxOffset) {
+
+        int offset = new Random().nextInt(maxOffset + 1);
         Pair<Double, Double> coords = getCoords();
 
         String zomatoApiBaseUrl = "https://developers.zomato.com/api/v2.1/";
-        String query = String.format("search?count=100&lat=%f&lon=%f&radius=%d", coords.getKey(), coords.getValue(), 1000);
+        String query = String.format("search?start=%d&count=100&lat=%f&lon=%f&radius=%d", offset, coords.getKey(), coords.getValue(), 5000);
         String url = zomatoApiBaseUrl + query;
 
         try {
@@ -91,14 +95,14 @@ public class Restaurant extends AbstractFunThing {
 
     @Override
     void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
-        JSONObject json = httpRequest();
+        JSONObject json = httpRequest(80);
         try {
             JSONArray restaurants = json.getJSONArray("restaurants");
             List<JSONObject> matches = new ArrayList<>();
             for (int i = 0; i < restaurants.length(); i++) {
                 JSONObject restaurant = (JSONObject) restaurants.get(i);
                 JSONObject rest = (JSONObject) restaurant.get("restaurant");
-                if (rest.getInt("average_cost_for_two") / 2 <= maxCost) {
+                if (rest.getInt("price_range") <= maxCost) {
                     matches.add(rest);
                 }
             }
