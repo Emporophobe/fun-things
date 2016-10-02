@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -19,9 +20,9 @@ public class FunThingPanel extends JPanel {
     private JTextArea info;
 
     public FunThingPanel(IFunThing thing){
-        BufferedImage image = new BufferedImage(800,600, BufferedImage.TYPE_INT_RGB);
+        BufferedImage image = new BufferedImage(View.WIDTH,View.HEIGHT, BufferedImage.TYPE_INT_RGB);
         try {
-            image = ImageIO.read(new URL("http://kurld.com/images/cats%20cute/cats%20cute-1.jpg"));
+            image = ImageIO.read(new File("testImage.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,8 +31,10 @@ public class FunThingPanel extends JPanel {
         this.title.setFont(new Font("Arial", Font.BOLD, 50));
         this.info = new JTextArea();
         this.info.setEditable(false);
+        this.info.setLineWrap(true);
         this.info.setText(thing.getInfoString());
         this.setLayout(new GridBagLayout());
+        this.info.setRows(10);
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
@@ -44,8 +47,8 @@ public class FunThingPanel extends JPanel {
         c.gridwidth = 1;
         c.gridheight = 1;
         this.add(this.title, c);
-        c.gridx = 1;
-        c.gridy = 0;
+        c.gridx = 0;
+        c.gridy = 2;
         c.gridwidth = 1;
         c.gridheight = 2;
         c.fill = GridBagConstraints.BOTH;
