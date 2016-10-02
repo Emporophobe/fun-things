@@ -52,7 +52,7 @@ public class TV extends AbstractFunThing {
             //get a random show ID
             Random random = new Random();
             int randInt = random.nextInt(21668) + 1;
-            System.out.println(randInt);
+            //System.out.println(randInt);
 
             try {
                 //get a random tv show
