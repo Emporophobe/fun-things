@@ -23,6 +23,7 @@ public class CategoryForm extends JFrame {
     JLabel distanceLabel;
     JLabel outsideLabel;
     JLabel categoryLabel;
+    JLabel loadingLabel;
 
     CategoryWidget categoryWidget = new CategoryWidget();
 
@@ -33,6 +34,8 @@ public class CategoryForm extends JFrame {
     JPanel outsideRow = new JPanel(new FlowLayout());
     JPanel categoryRow = new JPanel(new FlowLayout());
 
+    ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
+
     JButton entertainMeButton;
 
     public CategoryForm() {
@@ -42,6 +45,7 @@ public class CategoryForm extends JFrame {
         this.distanceLabel = new JLabel("Maximum Distance: ");
         this.outsideLabel = new JLabel("Wanna go outside?");
         this.categoryLabel = new JLabel("Categories: ");
+        this.loadingLabel = new JLabel("when pacman stops chomping, it's loading", loadingIcon, JLabel.CENTER);
 
         this.entertainMeButton = new JButton("ENTERTAIN ME");
 
@@ -76,12 +80,14 @@ public class CategoryForm extends JFrame {
         innerPanel.add(outsideRow);
         innerPanel.add(this.categoryRow);
         innerPanel.add(this.entertainMeButton);
+        innerPanel.add(loadingLabel);
         this.categoryWidget.addEnablerToChildren(this.entertainMeButton);
         this.entertainMeButton.addActionListener(e -> {
 
             try {
                 IFunThing thing = Generator.generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
                         costRangeWidget.getValue(),outsideWidget.getValue(), categoryWidget.getValue());
+
                 this.setVisible(false);
                 new FunThingFrame(thing).setVisible(true);
                 Preferences.loadData(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
