@@ -20,12 +20,12 @@ public class VideoGame extends AbstractFunThing {
                      int maxMinutes,
                      int maxCost,
                      boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+        super(participants, maxMinutes, maxCost);
     }
 
     //FIX THIS
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         Collections.shuffle(LIST_OF_VIDEOGAMES);
         boolean satisfied = false;
         int counter = 0;
