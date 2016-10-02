@@ -9,6 +9,6 @@ public enum Category {
     BOARDGAME,
     VIDEOGAME,
     RESTAURANT,
-    //COOKING,
+    RECIPE,
     //OUTSIDE
 }

@@ -15,13 +15,13 @@ public class Preferences {
     private static boolean outside;
     private static List<Category> categories;
 
-    public static void loadData(int people, int minutes, int cost, int distance, boolean isOutside, List<Category> categories){
-        people = people;
-        minutes = minutes;
-        cost = cost;
-        distance = distance;
-        outside = isOutside;
-        categories = categories;
+    public static void loadData(int p, int m, int c, int d, boolean o, List<Category> cats){
+        people = p;
+        minutes = m;
+        cost = c;
+        distance = d;
+        outside = o;
+        categories = cats;
     }
 
     public static int getPeople() {

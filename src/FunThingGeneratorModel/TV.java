@@ -42,14 +42,18 @@ public class TV extends AbstractFunThing {
     @Override
     void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
 
-        //get a random show ID
-        Random random = new Random();
-        int randInt = random.nextInt(21668) + 1;
+
 
         //keep track of how many tries
         int counter = 0;
 
         while (counter < 50) {
+
+            //get a random show ID
+            Random random = new Random();
+            int randInt = random.nextInt(21668) + 1;
+            //System.out.println(randInt);
+
             try {
                 //get a random tv show
                 JSONObject json = JsonUtils.readJsonFromUrl(RANDOM_TV_API_BASE + randInt);
@@ -85,7 +89,7 @@ public class TV extends AbstractFunThing {
                 }
 
             }catch(JSONException | IOException ex){
-
+                ex.printStackTrace();
             }
         }
 
@@ -119,6 +123,10 @@ public class TV extends AbstractFunThing {
                 runtime + " minutes\n" +
                 summary;
     }
+
+    @Override
+    public String getImageSource() {
+        return "http://www.publicdomainpictures.net/pictures/70000/velka/tv-isolated-background-clipart.jpg";}
 
     public static void main(String[] args) throws NoMatchException {
         TV tv = new TV(0, 90, 0);

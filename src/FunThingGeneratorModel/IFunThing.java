@@ -19,4 +19,6 @@ public interface IFunThing {
      * @return A string with miscellaneous relevant information
      */
     String getInfoString();
+
+
 }

@@ -30,4 +30,6 @@ abstract class AbstractFunThing implements IFunThing {
 
     @Override
     public abstract String getInfoString();
+
+    public abstract String getImageSource();
 }

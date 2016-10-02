@@ -12,6 +12,7 @@ public class VideoGameEntry {
     private int minPlayers;
     private int maxPlayers;
     private String genre;
+    private String imageUrl;
 
     /**
      * To create a VideoGameEntry
@@ -22,12 +23,13 @@ public class VideoGameEntry {
      * @param maxPlayers    the maximum number of players to play
      * @param genre         the genre of the game
      */
-    VideoGameEntry(String title, String console, int minPlayers, int maxPlayers, String genre) {
+    VideoGameEntry(String title, String console, int minPlayers, int maxPlayers, String genre, String imageUrl) {
         this.title = title;
         this.console = console;
         this.minPlayers = minPlayers;
         this.maxPlayers = maxPlayers;
         this.genre = genre;
+        this.imageUrl = imageUrl;
     }
 
     /**
@@ -68,6 +70,10 @@ public class VideoGameEntry {
      */
     public int getMaxPlayers() {
         return maxPlayers;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
 }

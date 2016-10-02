@@ -55,7 +55,7 @@ public class Restaurant extends AbstractFunThing {
         Pair<Double, Double> coords = getCoords();
 
         String zomatoApiBaseUrl = "https://developers.zomato.com/api/v2.1/";
-        String query = String.format("search?count=100&lat=%f&lon=%f&radius=%d", coords.getKey(), coords.getValue(), 5000);
+        String query = String.format("search?count=100&lat=%f&lon=%f&radius=%d", coords.getKey(), coords.getValue(), 1000);
         String url = zomatoApiBaseUrl + query;
 
         try {
@@ -98,7 +98,7 @@ public class Restaurant extends AbstractFunThing {
             for (int i = 0; i < restaurants.length(); i++) {
                 JSONObject restaurant = (JSONObject) restaurants.get(i);
                 JSONObject rest = (JSONObject) restaurant.get("restaurant");
-                if (rest.getInt("price_range") <= maxCost) {
+                if (rest.getInt("average_cost_for_two") / 2 <= maxCost) {
                     matches.add(rest);
                 }
             }
@@ -134,5 +134,10 @@ public class Restaurant extends AbstractFunThing {
             e.printStackTrace();
             return "NO INFO";
         }
+    }
+
+    @Override
+    public String getImageSource() {
+        return "https://pixabay.com/static/uploads/photo/2013/07/13/11/56/cutlery-158984_960_720.png";
     }
 }

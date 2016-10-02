@@ -106,6 +106,11 @@ public class Movie extends AbstractFunThing{
 
     }
 
+    @Override
+    public String getImageSource() {
+        return urlToPoster;
+    }
+
     public static void main(String[] args) throws IOException, JSONException, NoMatchException {
         Movie movie = new Movie(0, 100, 0);
         System.out.println(movie.getName());

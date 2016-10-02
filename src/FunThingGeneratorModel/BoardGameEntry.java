@@ -6,12 +6,14 @@ public class BoardGameEntry {
     private int minPlayers;
     private int maxPlayers;
     private int duration;
+    private String imageUrl;
 
-    public BoardGameEntry(String name, int minPlayers, int maxPlayers, int duration) {
+    public BoardGameEntry(String name, int minPlayers, int maxPlayers, int duration, String imageUrl) {
         this.name = name;
         this.minPlayers = minPlayers;
         this.maxPlayers = maxPlayers;
         this.duration = duration;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -28,5 +30,9 @@ public class BoardGameEntry {
 
     public int getDuration() {
         return duration;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

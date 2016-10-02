@@ -15,6 +15,7 @@ public class VideoGame extends AbstractFunThing {
     private String name;
     private String genre;
     private String console;
+    private String imageUrl;
 
     public VideoGame(int participants,
                      int maxMinutes,
@@ -34,6 +35,8 @@ public class VideoGame extends AbstractFunThing {
                 this.name = potentialGame.getTitle();
                 this.console = potentialGame.getConsole();
                 this.genre = potentialGame.getGenre();
+                this.imageUrl = potentialGame.getImageUrl();
+
                 satisfied = true;
             }
             counter++;
@@ -59,6 +62,11 @@ public class VideoGame extends AbstractFunThing {
                 this.getConsole();
     }
 
+    @Override
+    public String getImageSource() {
+        return imageUrl;
+    }
+
     private static List<VideoGameEntry> parseVideoGames() {
         List<VideoGameEntry> videoGames = new ArrayList<>();
         File file = new File("VideoGames.csv");
@@ -74,7 +82,8 @@ public class VideoGame extends AbstractFunThing {
                     int minPlayers = Integer.parseInt(entryScanner.next());
                     int maxPlayers = Integer.parseInt(entryScanner.next());
                     String genre = entryScanner.next();
-                    VideoGameEntry entry = new VideoGameEntry(name, console, minPlayers, maxPlayers, genre);
+                    String imageUrl = entryScanner.next();
+                    VideoGameEntry entry = new VideoGameEntry(name, console, minPlayers, maxPlayers, genre, imageUrl);
                     videoGames.add(entry);
                 } catch (Exception e) {
                     throw new IllegalStateException("Entry in csv file does not have the required parameters");
