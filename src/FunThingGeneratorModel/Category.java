@@ -9,8 +9,8 @@ public enum Category {
     BOARDGAME("Board Game"),
     VIDEOGAME("Video Game"),
     RESTAURANT("Restaurant"),
-    RECIPE("Recipe");
-    //OUTSIDE
+    RECIPE("Recipe"),
+    OUTSIDE("Outside");
 
     private String name;
 

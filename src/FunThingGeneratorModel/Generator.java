@@ -49,6 +49,8 @@ public class Generator {
                 return new VideoGame(participants, maxMinutes, maxCost, maxDistance);
             case RECIPE:
                 return new Recipe(participants, maxMinutes, maxCost, maxDistance);
+            case OUTSIDE :
+                return new Outside(participants, maxMinutes, maxCost, maxDistance);
         }
 
         //you should never get here
