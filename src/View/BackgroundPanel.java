@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
+// From https://tips4java.wordpress.com/2008/10/12/background-panel/
 public class BackgroundPanel extends JPanel
 {
     public static final int SCALED = 0;

@@ -5,8 +5,12 @@ import FunThingGeneratorModel.IFunThing;
 import FunThingGeneratorModel.NoMatchException;
 import View.PreferenceWidgets.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by DJ on 10/1/2016.
@@ -41,6 +45,13 @@ public class CategoryForm extends JFrame {
         this.outsideLabel = new JLabel("Wanna go outside?");
         this.categoryLabel = new JLabel("Categories: ");
         this.loadingLabel = new JLabel("when pacman stops chomping, it's loading", loadingIcon, JLabel.CENTER);
+        this.peopleRangeLabel.setForeground(new Color(0, 255, 255));
+        this.timeRangeLabel.setForeground(new Color(0, 255, 255));
+        this.costLabel.setForeground(new Color(0, 255, 255));
+        this.distanceLabel.setForeground(new Color(0, 255, 255));
+        this.outsideLabel.setForeground(new Color(0, 255, 255));
+        this.categoryLabel.setForeground(new Color(0, 255, 255));
+        this.loadingLabel.setForeground(new Color(0, 255, 255));
 
         this.entertainMeButton = new JButton("ENTERTAIN ME");
 
@@ -51,10 +62,12 @@ public class CategoryForm extends JFrame {
         this.outsideRow.add(outsideLabel);
         this.categoryRow.add(categoryLabel);
 
-        JPanel innerPanel = new JPanel();
-        JLabel preferences = new JLabel("       PREFERENCES:", JLabel.CENTER);
-        preferences.setFont(new Font("Serif", Font.BOLD, 50));
-        preferences.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JPanel innerPanel;
+        try {
+            innerPanel = new BackgroundPanel(ImageIO.read(new File("resources/Preferences.png")));
+        } catch (IOException e) {
+            innerPanel = new JPanel();
+        }
         PeopleRangeWidget peopleRangeWidget = new PeopleRangeWidget();
         TimeRangeWidget timeRangeWidget = new TimeRangeWidget();
         CostRangeWidget costRangeWidget = new CostRangeWidget();
@@ -66,7 +79,13 @@ public class CategoryForm extends JFrame {
         distanceRow.add(distanceWidget);
         outsideRow.add(outsideWidget);
         categoryRow.add(categoryWidget);
-        innerPanel.add(preferences, BorderLayout.NORTH);
+        innerPanel.add(Box.createVerticalStrut(100), BorderLayout.NORTH);
+        recursiveBackground(peopleRangeRow);
+        recursiveBackground(timeRangeRow);
+        recursiveBackground(costRow);
+        recursiveBackground(distanceRow);
+        recursiveBackground(outsideRow);
+        recursiveBackground(categoryRow);
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
         innerPanel.add(this.peopleRangeRow);
         innerPanel.add(this.timeRangeRow);
@@ -81,7 +100,8 @@ public class CategoryForm extends JFrame {
 
             try {
                 IFunThing thing = Generator.generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
-                        costRangeWidget.getValue(), outsideWidget.getValue(), distanceWidget.getValue(), categoryWidget.getValue());
+                        costRangeWidget.getValue(), outsideWidget.getValue(), distanceWidget.getValue(),
+                        categoryWidget.getValue());
 
                 this.setVisible(false);
                 new FunThingFrame(thing).setVisible(true);
@@ -97,5 +117,14 @@ public class CategoryForm extends JFrame {
         this.entertainMeButton.setEnabled(false);
         this.add(innerPanel);
         this.setSize(View.WIDTH, View.HEIGHT);
+    }
+
+    private void recursiveBackground(Component c) {
+        c.setBackground(Color.BLACK);
+        if(c instanceof JPanel){
+            for(Component comp : ((JPanel) c).getComponents()){
+                recursiveBackground(comp);
+            }
+        }
     }
 }
