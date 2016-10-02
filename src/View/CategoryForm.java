@@ -7,38 +7,33 @@ import View.PreferenceWidgets.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyVetoException;
-import java.beans.VetoableChangeListener;
 
 /**
  * Created by DJ on 10/1/2016.
  */
 public class CategoryForm extends JFrame {
-    JLabel peopleRangeLabel;
-    JLabel timeRangeLabel;
-    JLabel costLabel;
-    JLabel distanceLabel;
-    JLabel outsideLabel;
-    JLabel categoryLabel;
-    JLabel loadingLabel;
+    private JLabel peopleRangeLabel;
+    private JLabel timeRangeLabel;
+    private JLabel costLabel;
+    private JLabel distanceLabel;
+    private JLabel outsideLabel;
+    private JLabel categoryLabel;
+    private JLabel loadingLabel;
 
-    CategoryWidget categoryWidget = new CategoryWidget();
+    private CategoryWidget categoryWidget = new CategoryWidget();
 
-    JPanel peopleRangeRow = new JPanel(new FlowLayout());
-    JPanel timeRangeRow = new JPanel(new FlowLayout());
-    JPanel costRow = new JPanel(new FlowLayout());
-    JPanel distanceRow = new JPanel(new FlowLayout());
-    JPanel outsideRow = new JPanel(new FlowLayout());
-    JPanel categoryRow = new JPanel(new FlowLayout());
+    private JPanel peopleRangeRow = new JPanel(new FlowLayout());
+    private JPanel timeRangeRow = new JPanel(new FlowLayout());
+    private JPanel costRow = new JPanel(new FlowLayout());
+    private JPanel distanceRow = new JPanel(new FlowLayout());
+    private JPanel outsideRow = new JPanel(new FlowLayout());
+    private JPanel categoryRow = new JPanel(new FlowLayout());
 
-    ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
+    private ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
 
-    JButton entertainMeButton;
+    private JButton entertainMeButton;
 
-    public CategoryForm() {
+    CategoryForm() {
         this.peopleRangeLabel = new JLabel("Number of People: ");
         this.timeRangeLabel = new JLabel("Maximum Duration: ");
         this.costLabel = new JLabel("Maximum Cost: ");
@@ -86,16 +81,16 @@ public class CategoryForm extends JFrame {
 
             try {
                 IFunThing thing = Generator.generate(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
-                        costRangeWidget.getValue(),outsideWidget.getValue(), categoryWidget.getValue());
+                        costRangeWidget.getValue(), outsideWidget.getValue(), categoryWidget.getValue());
 
                 this.setVisible(false);
                 new FunThingFrame(thing).setVisible(true);
                 Preferences.loadData(peopleRangeWidget.getValue(), timeRangeWidget.getValue(),
-                        costRangeWidget.getValue(),distanceWidget.getValue(),outsideWidget.getValue(),
+                        costRangeWidget.getValue(), distanceWidget.getValue(), outsideWidget.getValue(),
                         categoryWidget.getValue());
                 this.dispose();
             } catch (NoMatchException e1) {
-                JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.", JOptionPane.ERROR_MESSAGE);
             }
 
         });

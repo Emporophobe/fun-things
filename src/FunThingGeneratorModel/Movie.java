@@ -7,12 +7,10 @@ import java.io.IOException;
 
 /**
  * Created by Li on 10/1/2016.
- *
+ * <p>
  * A movie Fun thing
  */
-public class Movie extends AbstractFunThing{
-
-    private final String RANDOM_MOVIE_API = "https://random-movie.herokuapp.com/random";
+public class Movie extends AbstractFunThing {
 
     private String title;
     private String genre;
@@ -22,12 +20,13 @@ public class Movie extends AbstractFunThing{
 
     /**
      * Constructs a valid Movie object
-     * @param participants         number of participants
-     * @param maxMinutes           max number of minutes
-     * @param maxCost              max cost
-     * @throws NoMatchException    if no valid match is found
+     *
+     * @param participants number of participants
+     * @param maxMinutes   max number of minutes
+     * @param maxCost      max cost
+     * @throws NoMatchException if no valid match is found
      */
-    public Movie(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    Movie(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         super(participants, maxMinutes, maxCost);
     }
 
@@ -35,10 +34,10 @@ public class Movie extends AbstractFunThing{
      * Populates this Movie with information pertaining to a movie
      * that is within the specified time limit
      *
-     * @param participants         the number of participants
-     * @param maxMinutes           the maximum amount of time
-     * @param maxCost              the maximum cost
-     * @throws NoMatchException    if there is no match after 50 tries
+     * @param participants the number of participants
+     * @param maxMinutes   the maximum amount of time
+     * @param maxCost      the maximum cost
+     * @throws NoMatchException if there is no match after 50 tries
      */
     @Override
     void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
@@ -49,6 +48,7 @@ public class Movie extends AbstractFunThing{
         while (counter < 50) {
             try {
                 //get a random movie
+                String RANDOM_MOVIE_API = "https://random-movie.herokuapp.com/random";
                 JSONObject json = JsonUtils.readJsonFromUrl(RANDOM_MOVIE_API);
 
                 //check if the runtime is short enough
@@ -69,7 +69,7 @@ public class Movie extends AbstractFunThing{
 
                 //otherwise, run again and increment the counter
                 else {
-                    counter ++;
+                    counter++;
                 }
             } catch (JSONException | IOException ex) {
                 ex.printStackTrace();
@@ -110,12 +110,4 @@ public class Movie extends AbstractFunThing{
     public String getImageSource() {
         return urlToPoster;
     }
-
-    public static void main(String[] args) throws IOException, JSONException, NoMatchException {
-        Movie movie = new Movie(0, 100, 0);
-        System.out.println(movie.getName());
-        System.out.println(movie.getInfoString());
-    }
-
-
 }

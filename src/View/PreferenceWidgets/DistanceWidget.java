@@ -19,7 +19,7 @@ public class DistanceWidget extends JPanel {
         maxLabel = new JLabel("Max (km)");
         slider = new JSlider(0, 5);
         Hashtable labelTable = new Hashtable();
-        for(int i = 1; i <= 5; i++){
+        for (int i = 1; i <= 5; i++) {
             labelTable.put(i, new JLabel(Integer.toString(i)));
         }
         slider.setLabelTable(labelTable);

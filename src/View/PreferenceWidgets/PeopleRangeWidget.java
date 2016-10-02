@@ -19,6 +19,6 @@ public class PeopleRangeWidget extends JPanel {
 
 
     public int getValue() {
-        return (int)peopleSpinner.getValue();
+        return (int) peopleSpinner.getValue();
     }
 }

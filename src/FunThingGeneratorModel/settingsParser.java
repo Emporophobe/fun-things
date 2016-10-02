@@ -15,7 +15,7 @@ public class settingsParser {
      * @param key The key to search for
      * @return The value of the setting; "NO_VALUE" if no value, or empty string if exception occurred.
      */
-    public static String getKey(String key) {
+    public static String getValue(String key) {
         try {
             File apiKeys = new File("src/settings.yaml");
             BufferedReader reader = new BufferedReader(new FileReader(apiKeys));

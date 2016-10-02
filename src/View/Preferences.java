@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by DJ on 10/1/2016.
  */
-public class Preferences {
+class Preferences {
     private static int people;
     private static int minutes;
     private static int cost;
@@ -15,7 +15,7 @@ public class Preferences {
     private static boolean outside;
     private static List<Category> categories;
 
-    public static void loadData(int p, int m, int c, int d, boolean o, List<Category> cats){
+    static void loadData(int p, int m, int c, int d, boolean o, List<Category> cats) {
         people = p;
         minutes = m;
         cost = c;
@@ -24,27 +24,27 @@ public class Preferences {
         categories = cats;
     }
 
-    public static int getPeople() {
+    static int getPeople() {
         return people;
     }
 
-    public static int getMinutes() {
+    static int getMinutes() {
         return minutes;
     }
 
-    public static int getCost() {
+    static int getCost() {
         return cost;
     }
 
-    public static int getDistance() {
+    static int getDistance() {
         return distance;
     }
 
-    public static boolean isOutside() {
+    static boolean isOutside() {
         return outside;
     }
 
-    public static List<Category> getCategories() {
+    static List<Category> getCategories() {
         return categories;
     }
 

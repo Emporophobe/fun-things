@@ -1,14 +1,13 @@
 package View.PreferenceWidgets;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by DJ on 10/1/2016.
  */
 public class TimeRangeWidget extends JPanel {
-    private int time = 10;
     JSpinner minuteSpinner;
+    private int time = 10;
 
     public TimeRangeWidget() {
         minuteSpinner = new JSpinner(new SpinnerNumberModel(time, 0, 640, 10));
@@ -18,6 +17,6 @@ public class TimeRangeWidget extends JPanel {
     }
 
     public int getValue() {
-        return (int)minuteSpinner.getValue();
+        return (int) minuteSpinner.getValue();
     }
 }

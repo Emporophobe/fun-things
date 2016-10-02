@@ -7,8 +7,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Random;
 
-public class Recipe extends AbstractFunThing {
-    private final String RANDOM_RECIPE_API = "http://food2fork.com/api/search?key=04c93ab22c6796462728f3688afd0417";
+class Recipe extends AbstractFunThing {
 
     private String title;
     private String pictureUrl;
@@ -22,7 +21,7 @@ public class Recipe extends AbstractFunThing {
      * @param maxCost      max cost
      * @throws NoMatchException if no valid match is found
      */
-    public Recipe(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    Recipe(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         super(participants, maxMinutes, maxCost);
     }
 
@@ -39,10 +38,11 @@ public class Recipe extends AbstractFunThing {
     void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         try {
             //get a random recipe
+            String RANDOM_RECIPE_API = "http://food2fork.com/api/search?key=04c93ab22c6796462728f3688afd0417";
             JSONObject json = JsonUtils.readJsonFromUrl(RANDOM_RECIPE_API);
 
             JSONArray recipes = json.getJSONArray("recipes");
-            int index  = new Random().nextInt(30);
+            int index = new Random().nextInt(30);
             JSONObject recipe = recipes.getJSONObject(index);
             this.title = recipe.getString("title");
             this.pictureUrl = recipe.getString("image_url");

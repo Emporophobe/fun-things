@@ -4,11 +4,22 @@ package FunThingGeneratorModel;
  * Types of fun things.
  */
 public enum Category {
-    MOVIE,
-    TV,
-    BOARDGAME,
-    VIDEOGAME,
-    RESTAURANT,
-    RECIPE,
+    MOVIE("Movie"),
+    TV("TV Show"),
+    BOARDGAME("Board Game"),
+    VIDEOGAME("Video Game"),
+    RESTAURANT("Restaurant"),
+    RECIPE("Recipe");
     //OUTSIDE
+
+    private String name;
+
+    Category(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

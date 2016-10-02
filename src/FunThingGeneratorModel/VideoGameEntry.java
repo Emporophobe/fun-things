@@ -2,10 +2,10 @@ package FunThingGeneratorModel;
 
 /**
  * To represent a video game that we own
- *
+ * <p>
  * Created by Li on 10/1/2016.
  */
-public class VideoGameEntry {
+class VideoGameEntry {
 
     private String title;
     private String console;
@@ -17,11 +17,11 @@ public class VideoGameEntry {
     /**
      * To create a VideoGameEntry
      *
-     * @param title         the title of the game
-     * @param console       the console the game is played on
-     * @param minPlayers    the minimum number of players to play
-     * @param maxPlayers    the maximum number of players to play
-     * @param genre         the genre of the game
+     * @param title      the title of the game
+     * @param console    the console the game is played on
+     * @param minPlayers the minimum number of players to play
+     * @param maxPlayers the maximum number of players to play
+     * @param genre      the genre of the game
      */
     VideoGameEntry(String title, String console, int minPlayers, int maxPlayers, String genre, String imageUrl) {
         this.title = title;
@@ -33,47 +33,41 @@ public class VideoGameEntry {
     }
 
     /**
-     *
      * @return the title
      */
-    public String getTitle(){
+    String getTitle() {
         return title;
     }
 
     /**
-     *
      * @return the console
      */
-    public String getConsole() {
+    String getConsole() {
         return console;
     }
 
     /**
-     *
      * @return the genre
      */
-    public String getGenre() {
+    String getGenre() {
         return genre;
     }
 
     /**
-     *
      * @return the min players
      */
-    public int getMinPlayers() {
+    int getMinPlayers() {
         return minPlayers;
     }
 
     /**
-     *
      * @return the max players
      */
-    public int getMaxPlayers() {
+    int getMaxPlayers() {
         return maxPlayers;
     }
 
-    public String getImageUrl() {
+    String getImageUrl() {
         return imageUrl;
     }
-
 }

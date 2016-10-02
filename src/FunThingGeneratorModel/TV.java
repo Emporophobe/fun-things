@@ -9,12 +9,10 @@ import java.util.Random;
 
 /**
  * A TV Show fun thing
- *
+ * <p>
  * Created by Li on 10/1/2016.
  */
 public class TV extends AbstractFunThing {
-
-    private final String RANDOM_TV_API_BASE = "http://api.tvmaze.com/shows/";
 
     private String name;
     private String genres;
@@ -27,8 +25,14 @@ public class TV extends AbstractFunThing {
      * @param maxCost      the max cost
      * @throws NoMatchException if no suitable tv show is found
      */
-    public TV(int participants, int maxMinutes, int maxCost) throws NoMatchException {
+    TV(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         super(participants, maxMinutes, maxCost);
+    }
+
+    public static void main(String[] args) throws NoMatchException {
+        TV tv = new TV(0, 90, 0);
+        System.out.println(tv.getName());
+        System.out.println(tv.getInfoString());
     }
 
     /**
@@ -43,7 +47,6 @@ public class TV extends AbstractFunThing {
     void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
 
 
-
         //keep track of how many tries
         int counter = 0;
 
@@ -56,6 +59,7 @@ public class TV extends AbstractFunThing {
 
             try {
                 //get a random tv show
+                String RANDOM_TV_API_BASE = "http://api.tvmaze.com/shows/";
                 JSONObject json = JsonUtils.readJsonFromUrl(RANDOM_TV_API_BASE + randInt);
                 //check if the runtime is short enough
                 int tempRuntime = json.getInt("runtime");
@@ -88,13 +92,13 @@ public class TV extends AbstractFunThing {
                     counter++;
                 }
 
-            }catch(JSONException | IOException ex){
+            } catch (JSONException | IOException ex) {
                 ex.printStackTrace();
             }
         }
 
         //if no match is found within 50 tries
-        if(counter>=50)
+        if (counter >= 50)
 
         {
             throw new NoMatchException("No TV Show found");
@@ -126,11 +130,6 @@ public class TV extends AbstractFunThing {
 
     @Override
     public String getImageSource() {
-        return "http://www.publicdomainpictures.net/pictures/70000/velka/tv-isolated-background-clipart.jpg";}
-
-    public static void main(String[] args) throws NoMatchException {
-        TV tv = new TV(0, 90, 0);
-        System.out.println(tv.getName());
-        System.out.println(tv.getInfoString());
+        return "http://www.publicdomainpictures.net/pictures/70000/velka/tv-isolated-background-clipart.jpg";
     }
 }

@@ -14,7 +14,6 @@ public class JsonUtils {
 
 
     /**
-     *
      * @param rd
      * @return
      * @throws IOException
@@ -29,7 +28,6 @@ public class JsonUtils {
     }
 
     /**
-     *
      * @param url
      * @return
      * @throws IOException

@@ -2,22 +2,18 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * Created by DJ on 10/1/2016.
  */
-public class LaunchWindow extends JFrame {
+class LaunchWindow extends JFrame {
     private JButton leggoButton;
     private JButton exitButton;
     private JLabel title;
     private JPanel myPanel;
     private JLabel subtitle;
 
-    public LaunchWindow() {
+    LaunchWindow() {
         leggoButton = new JButton("LEGGO");
         exitButton = new JButton("BAIBAI");
         exitButton.addActionListener(e -> {

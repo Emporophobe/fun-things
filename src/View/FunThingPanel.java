@@ -1,28 +1,24 @@
 package View;
 
 import FunThingGeneratorModel.IFunThing;
-import com.sun.javafx.iio.ImageStorage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.text.StyledDocument;
-import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 /**
  * Created by DJ on 10/1/2016.
  */
-public class FunThingPanel extends JPanel {
+class FunThingPanel extends JPanel {
     private ImagePanel image;
     private JLabel title;
     private JTextArea info;
 
-    public FunThingPanel(IFunThing thing){
-        BufferedImage image = new BufferedImage(View.WIDTH,View.HEIGHT, BufferedImage.TYPE_INT_RGB);
+    FunThingPanel(IFunThing thing) {
+        BufferedImage image = new BufferedImage(View.WIDTH, View.HEIGHT, BufferedImage.TYPE_INT_RGB);
         try {
             image = ImageIO.read(new URL(thing.getImageSource()));
         } catch (IOException e) {
@@ -34,7 +30,7 @@ public class FunThingPanel extends JPanel {
         this.info = new JTextArea();
         this.info.setEditable(false);
         this.info.setLineWrap(true);
-        this.info.setText("<html>" + thing.getInfoString() +"</html>");
+        this.info.setText("<html>" + thing.getInfoString() + "</html>");
         this.setLayout(new GridBagLayout());
 
         GridBagConstraints c = new GridBagConstraints();
@@ -55,7 +51,7 @@ public class FunThingPanel extends JPanel {
         c.gridheight = 2;
         c.fill = GridBagConstraints.BOTH;
         JScrollPane scroll = new JScrollPane(this.info);
-        scroll.setMinimumSize(new Dimension(0,300));
+        scroll.setMinimumSize(new Dimension(0, 300));
         scroll.setMaximumSize(new Dimension(0, 300));
         this.add(scroll, c);
     }

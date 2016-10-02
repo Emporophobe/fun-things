@@ -10,40 +10,42 @@ import java.awt.*;
 /**
  * Created by DJ on 10/1/2016.
  */
-public class FunThingFrame extends JFrame{
-    JButton backButton;
-    JButton vetoButton;
-    JButton acceptButton;
-    FunThingPanel ftPanel;
-    JLabel loadingLabel;
-    JPanel bottomPanel = new JPanel(new GridLayout(0, 1));
+class FunThingFrame extends JFrame {
+    private JButton backButton;
+    private JButton vetoButton;
+    private JButton acceptButton;
+    private FunThingPanel ftPanel;
+    private JLabel loadingLabel;
+    private JPanel bottomPanel = new JPanel(new GridLayout(0, 1));
 
-    ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
+    private ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
 
-    public FunThingFrame(IFunThing thing) {
+    FunThingFrame(IFunThing thing) {
         backButton = new JButton("BACK");
-        backButton.addActionListener(e->{
+        backButton.addActionListener(e -> {
             this.setVisible(false);
             new CategoryForm().setVisible(true);
         });
         vetoButton = new JButton("VETO!");
         acceptButton = new JButton("YES!");
-        acceptButton.addActionListener(e->{
+        acceptButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "CONGRATULATIONS!!! \n" +
                     "You have selected a fun thing!!! \n" +
                     "Go do the thing! \n" +
                     "omg you're going to have so much fun");
         });
-        vetoButton.addActionListener(e->{try {
-            IFunThing f = Generator.generate(Preferences.getPeople(),Preferences.getMinutes(),Preferences.getCost(),
-                    Preferences.isOutside(),Preferences.getCategories());
-            this.remove(ftPanel);
-            this.add(new FunThingPanel(f));
-            this.revalidate();
-            this.repaint();
-        } catch (NoMatchException e1) {
-            JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.",JOptionPane.ERROR_MESSAGE);
-        }});
+        vetoButton.addActionListener(e -> {
+            try {
+                IFunThing f = Generator.generate(Preferences.getPeople(), Preferences.getMinutes(), Preferences.getCost(),
+                        Preferences.isOutside(), Preferences.getCategories());
+                this.remove(ftPanel);
+                this.add(new FunThingPanel(f));
+                this.revalidate();
+                this.repaint();
+            } catch (NoMatchException e1) {
+                JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.", JOptionPane.ERROR_MESSAGE);
+            }
+        });
         ftPanel = new FunThingPanel(thing);
         this.add(ftPanel, BorderLayout.CENTER);
         this.setSize(View.WIDTH, View.HEIGHT);
@@ -54,7 +56,7 @@ public class FunThingFrame extends JFrame{
     }
 
     private class ButtonRow extends JPanel {
-        public ButtonRow(JButton ... buttons) {
+        ButtonRow(JButton... buttons) {
             this.setLayout(new FlowLayout());
             for (JButton button : buttons) {
                 this.add(button);

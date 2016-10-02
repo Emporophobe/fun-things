@@ -6,23 +6,22 @@ import java.util.Random;
 /**
  * Generate activity suggestions.
  */
-public class Generator  {
+public class Generator {
 
     /**
-     *
-     * @param participants      the number of participants
-     * @param maxMinutes        the maximum time
-     * @param maxCost           the maximum cost
-     * @param isOutside         is it outside?
-     * @param categories        the possible categories
-     * @return                  a random fun thing from the categories given
+     * @param participants the number of participants
+     * @param maxMinutes   the maximum time
+     * @param maxCost      the maximum cost
+     * @param isOutside    is it outside?
+     * @param categories   the possible categories
+     * @return a random fun thing from the categories given
      * @throws NoMatchException if the list of categories is empty
      */
     public static IFunThing generate(int participants,
-                              int maxMinutes,
-                              int maxCost,
-                              boolean isOutside,
-                              List<Category> categories) throws NoMatchException {
+                                     int maxMinutes,
+                                     int maxCost,
+                                     boolean isOutside,
+                                     List<Category> categories) throws NoMatchException {
 
         //if the list is empty (it should never be able to be empty)
         if (categories.isEmpty()) {
@@ -36,17 +35,17 @@ public class Generator  {
 
         //create the appropriate fun thing
         switch (c) {
-            case MOVIE :
+            case MOVIE:
                 return new Movie(participants, maxMinutes, maxCost);
-            case TV :
+            case TV:
                 return new TV(participants, maxMinutes, maxCost);
-            case BOARDGAME :
+            case BOARDGAME:
                 return new BoardGame(participants, maxMinutes, maxCost);
-            case RESTAURANT :
+            case RESTAURANT:
                 return new Restaurant(participants, maxMinutes, maxCost);
-            case VIDEOGAME :
+            case VIDEOGAME:
                 return new VideoGame(participants, maxMinutes, maxCost);
-            case RECIPE :
+            case RECIPE:
                 return new Recipe(participants, maxMinutes, maxCost);
         }
 

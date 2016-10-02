@@ -20,7 +20,11 @@ public interface IFunThing {
      */
     String getInfoString();
 
-
+    /**
+     * Get the URL of an image of the thing.
+     *
+     * @return URL string
+     */
     String getImageSource();
 
 }

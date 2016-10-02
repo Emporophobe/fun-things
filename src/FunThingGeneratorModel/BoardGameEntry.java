@@ -1,6 +1,6 @@
 package FunThingGeneratorModel;
 
-public class BoardGameEntry {
+class BoardGameEntry {
 
     private String name;
     private int minPlayers;
@@ -8,7 +8,7 @@ public class BoardGameEntry {
     private int duration;
     private String imageUrl;
 
-    public BoardGameEntry(String name, int minPlayers, int maxPlayers, int duration, String imageUrl) {
+    BoardGameEntry(String name, int minPlayers, int maxPlayers, int duration, String imageUrl) {
         this.name = name;
         this.minPlayers = minPlayers;
         this.maxPlayers = maxPlayers;
@@ -20,19 +20,19 @@ public class BoardGameEntry {
         return name;
     }
 
-    public int getMinPlayers() {
+    int getMinPlayers() {
         return minPlayers;
     }
 
-    public int getMaxPlayers() {
+    int getMaxPlayers() {
         return maxPlayers;
     }
 
-    public int getDuration() {
+    int getDuration() {
         return duration;
     }
 
-    public String getImageUrl() {
+    String getImageUrl() {
         return imageUrl;
     }
 }

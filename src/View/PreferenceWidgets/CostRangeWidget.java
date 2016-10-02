@@ -1,7 +1,6 @@
 package View.PreferenceWidgets;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Hashtable;
 
 /**

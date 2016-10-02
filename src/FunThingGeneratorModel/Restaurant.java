@@ -17,7 +17,7 @@ import java.util.Random;
 /**
  * Query the Zomato API to get restaurants.
  */
-public class Restaurant extends AbstractFunThing {
+class Restaurant extends AbstractFunThing {
 
     private JSONObject chosenRestaurant;
 
@@ -64,7 +64,7 @@ public class Restaurant extends AbstractFunThing {
 
         try {
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-            String key = settingsParser.getKey("zomato_api_key");
+            String key = settingsParser.getValue("zomato_api_key");
             conn.setRequestProperty("user-key", key);
 
             BufferedReader in = new BufferedReader(
@@ -97,7 +97,12 @@ public class Restaurant extends AbstractFunThing {
     void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         JSONObject json = httpRequest(80);
         try {
-            JSONArray restaurants = json.getJSONArray("restaurants");
+            JSONArray restaurants;
+            if (json != null) {
+                restaurants = json.getJSONArray("restaurants");
+            } else {
+                throw new JSONException("No JSON object");
+            }
             List<JSONObject> matches = new ArrayList<>();
             for (int i = 0; i < restaurants.length(); i++) {
                 JSONObject restaurant = (JSONObject) restaurants.get(i);
@@ -129,11 +134,9 @@ public class Restaurant extends AbstractFunThing {
     @Override
     public String getInfoString() {
         try {
-            String sb = chosenRestaurant.get("cuisines") +
+            return chosenRestaurant.get("cuisines") +
                     "\n\n" +
                     ((JSONObject) chosenRestaurant.get("location")).get("address");
-
-            return sb;
         } catch (JSONException e) {
             e.printStackTrace();
             return "NO INFO";

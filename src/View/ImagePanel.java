@@ -7,14 +7,15 @@ import java.awt.image.BufferedImage;
 /**
  * Created by DJ on 10/1/2016.
  */
-public class ImagePanel extends JPanel {
+class ImagePanel extends JPanel {
     private BufferedImage image;
-    ImagePanel(BufferedImage image, int width, int height){
+
+    ImagePanel(BufferedImage image, int width, int height) {
         this.image = resizeImage(image, width, height);
         Icon icon = new ImageIcon(this.image);
         JLabel imageLabel = new JLabel(icon);
         this.add(imageLabel);
-        this.setSize(image.getWidth(),image.getHeight());
+        this.setSize(image.getWidth(), image.getHeight());
     }
 
     private BufferedImage resizeImage(BufferedImage image, int width, int height) {

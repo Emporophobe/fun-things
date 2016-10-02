@@ -3,14 +3,10 @@ package View.PreferenceWidgets;
 import FunThingGeneratorModel.Category;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyVetoException;
-import java.beans.VetoableChangeListener;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,9 +26,9 @@ public class CategoryWidget extends JPanel {
     }
 
     public boolean somethingSelected() {
-        for(Component c : this.getComponents()){
+        for (Component c : this.getComponents()) {
             CategoryWidgette w = (CategoryWidgette) c;
-            if(w.checkBox.isSelected()) {
+            if (w.checkBox.isSelected()) {
                 return true;
             }
         }
@@ -40,7 +36,7 @@ public class CategoryWidget extends JPanel {
     }
 
     public void addEnablerToChildren(JButton entertainMeButton) {
-        for(Component c : getComponents()){
+        for (Component c : getComponents()) {
             CategoryWidgette w = (CategoryWidgette) c;
             w.checkBox.addChangeListener(new ChangeListener() {
                 @Override
@@ -53,9 +49,9 @@ public class CategoryWidget extends JPanel {
 
     public List<Category> getValue() {
         List<Category> lst = new ArrayList<Category>();
-        for(Component c : this.getComponents()){
-            CategoryWidgette w = (CategoryWidgette)c;
-            if(w.checkBox.isSelected()){
+        for (Component c : this.getComponents()) {
+            CategoryWidgette w = (CategoryWidgette) c;
+            if (w.checkBox.isSelected()) {
                 lst.add(w.category);
             }
         }
