@@ -1,9 +1,12 @@
 package View;
 
+import FunThingGeneratorModel.Generator;
 import FunThingGeneratorModel.IFunThing;
+import FunThingGeneratorModel.NoMatchException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by DJ on 10/1/2016.
@@ -11,10 +14,20 @@ import java.awt.*;
 public class FunThingFrame extends JFrame{
     JButton vetoButton;
     JButton acceptButton;
+    FunThingPanel ftPanel;
     public FunThingFrame(IFunThing thing) {
         vetoButton = new JButton("VETO!");
         acceptButton = new JButton("YES!");
-        this.add(new FunThingPanel(thing), BorderLayout.CENTER);
+        vetoButton.addActionListener(e->{try {
+            IFunThing f = Generator.generate(Preferences.getPeople(),Preferences.getMinutes(),Preferences.getCost(),
+                    Preferences.isOutside(),Preferences.getCategories());
+            this.ftPanel = new FunThingPanel(f);
+            this.dispose();
+        } catch (NoMatchException e1) {
+            JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.",JOptionPane.ERROR_MESSAGE);
+        }});
+        ftPanel = new FunThingPanel(thing);
+        this.add(ftPanel, BorderLayout.CENTER);
         this.setSize(View.WIDTH,View.HEIGHT);
         this.add(new ButtonDuo(acceptButton, vetoButton),BorderLayout.SOUTH);
     }
