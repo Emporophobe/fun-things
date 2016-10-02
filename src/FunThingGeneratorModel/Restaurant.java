@@ -147,7 +147,7 @@ class Restaurant extends AbstractFunThing {
                     + ((JSONObject) chosenRestaurant.get("location")).get("address")
                     + "\n\n"
                     + " Website: "
-                    + "a href=" + chosenRestaurant.get("menu_url") + "Click for menu" + "</a>";
+                    + "<a href=" + chosenRestaurant.get("menu_url") + ">" + "Click for menu" + "</a>";
         } catch (JSONException e) {
             e.printStackTrace();
             return "NO INFO";
