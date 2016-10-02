@@ -57,7 +57,7 @@ public class CategoryForm extends JFrame {
         this.categoryRow.add(categoryLabel);
 
         JPanel innerPanel = new JPanel();
-        JLabel preferences = new JLabel("PREFERENCES: ");
+        JLabel preferences = new JLabel("       PREFERENCES:", JLabel.CENTER);
         preferences.setFont(new Font("Serif", Font.BOLD, 50));
         preferences.setAlignmentX(Component.CENTER_ALIGNMENT);
         PeopleRangeWidget peopleRangeWidget = new PeopleRangeWidget();
