@@ -18,8 +18,7 @@ public class VideoGame extends AbstractFunThing {
 
     public VideoGame(int participants,
                      int maxMinutes,
-                     int maxCost,
-                     boolean isOutside) throws NoMatchException {
+                     int maxCost) throws NoMatchException {
         super(participants, maxMinutes, maxCost);
     }
 
@@ -90,7 +89,7 @@ public class VideoGame extends AbstractFunThing {
     }
 
     public static void main(String[] args) throws NoMatchException {
-        System.out.println(new VideoGame(1, 0, 0, false).getInfoString());
+        System.out.println(new VideoGame(1, 0, 0).getInfoString());
 
     }
 
