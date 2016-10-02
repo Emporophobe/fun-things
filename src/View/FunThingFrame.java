@@ -39,7 +39,6 @@ class FunThingFrame extends JFrame {
         });
         vetoButton.addActionListener(e -> {
             try {
-                System.out.println(Preferences.getCategories());
                 IFunThing f = Generator.generate(Preferences.getPeople(), Preferences.getMinutes(), Preferences.getCost(),
                         Preferences.isOutside(), Preferences.getDistance(), Preferences.getCategories());
                 remove(ftPanel);
