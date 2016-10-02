@@ -2,6 +2,7 @@ package View;
 
 import FunThingGeneratorModel.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,7 +46,9 @@ class Preferences {
     }
 
     static List<Category> getCategories() {
-        return categories;
+        List<Category> catClone = new ArrayList<>();
+        catClone.addAll(categories);
+        return catClone;
     }
 
 
