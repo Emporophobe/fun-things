@@ -93,7 +93,13 @@ public class Outside extends AbstractFunThing{
                     this.duration = duration;
                     this.title = activity.getString("title");
                     this.price = price;
-                    this.imageUrl = activity.getString("imageURL");
+                    try {
+                        this.imageUrl = activity.getString("imageURL");
+                    }
+                    catch(Exception e) {
+                        this.imageUrl = "http://res.freestockphotos.biz/pictures/16/16836-illustration-of-a-compass-pv.png";
+                    }
+
                     return;
                 }
 
