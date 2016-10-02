@@ -85,7 +85,7 @@ public class TV extends AbstractFunThing {
                 }
 
             }catch(JSONException | IOException ex){
-                ex.printStackTrace();
+
             }
         }
 

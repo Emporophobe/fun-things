@@ -7,7 +7,7 @@ public enum Category {
     MOVIE,
     TV,
     BOARDGAME,
-    //VIDEOGAME,
+    VIDEOGAME,
     RESTAURANT,
     //COOKING,
     //OUTSIDE

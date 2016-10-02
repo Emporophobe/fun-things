@@ -18,14 +18,13 @@ public class VideoGame extends AbstractFunThing {
 
     public VideoGame(int participants,
                      int maxMinutes,
-                     int maxCost,
-                     boolean isOutside) throws NoMatchException {
-        super(participants, maxMinutes, maxCost, isOutside);
+                     int maxCost) throws NoMatchException {
+        super(participants, maxMinutes, maxCost);
     }
 
     //FIX THIS
     @Override
-    void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
+    void generate(int participants, int maxMinutes, int maxCost) throws NoMatchException {
         Collections.shuffle(LIST_OF_VIDEOGAMES);
         boolean satisfied = false;
         int counter = 0;
@@ -90,7 +89,7 @@ public class VideoGame extends AbstractFunThing {
     }
 
     public static void main(String[] args) throws NoMatchException {
-        System.out.println(new VideoGame(1, 0, 0, false).getInfoString());
+        System.out.println(new VideoGame(1, 0, 0).getInfoString());
 
     }
 
