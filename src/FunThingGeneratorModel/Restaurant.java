@@ -55,7 +55,7 @@ public class Restaurant extends AbstractFunThing {
         Pair<Double, Double> coords = getCoords();
 
         String zomatoApiBaseUrl = "https://developers.zomato.com/api/v2.1/";
-        String query = String.format("search?count=100&lat=%f&lon=%f&radius=%d", coords.getKey(), coords.getValue(), 1000);
+        String query = String.format("search?count=100&lat=%f&lon=%f&radius=%d", coords.getKey(), coords.getValue(), 5000);
         String url = zomatoApiBaseUrl + query;
 
         try {
@@ -98,7 +98,7 @@ public class Restaurant extends AbstractFunThing {
             for (int i = 0; i < restaurants.length(); i++) {
                 JSONObject restaurant = (JSONObject) restaurants.get(i);
                 JSONObject rest = (JSONObject) restaurant.get("restaurant");
-                if (rest.getInt("average_cost_for_two") / 2 <= maxCost) {
+                if (rest.getInt("price_range") <= maxCost) {
                     matches.add(rest);
                 }
             }
