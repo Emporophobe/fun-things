@@ -15,7 +15,7 @@ public class FunThingFrame extends JFrame{
         vetoButton = new JButton("VETO!");
         acceptButton = new JButton("YES!");
         this.add(new FunThingPanel(thing), BorderLayout.CENTER);
-        this.setSize(800,600);
+        this.setSize(View.WIDTH,View.HEIGHT);
         this.add(new ButtonDuo(acceptButton, vetoButton),BorderLayout.SOUTH);
     }
 

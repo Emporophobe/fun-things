@@ -20,7 +20,7 @@ public class FunThingPanel extends JPanel {
     private JTextArea info;
 
     public FunThingPanel(IFunThing thing){
-        BufferedImage image = new BufferedImage(800,600, BufferedImage.TYPE_INT_RGB);
+        BufferedImage image = new BufferedImage(View.WIDTH,View.HEIGHT, BufferedImage.TYPE_INT_RGB);
         try {
             image = ImageIO.read(new File("testImage.jpg"));
         } catch (IOException e) {

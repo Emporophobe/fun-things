@@ -85,7 +85,7 @@ public class CategoryForm extends JFrame {
         });
         this.entertainMeButton.setEnabled(false);
         this.add(innerPanel);
-        this.setSize(800, 600);
+        this.setSize(View.WIDTH, View.HEIGHT);
     }
 
     private class MockFunThing implements IFunThing{
