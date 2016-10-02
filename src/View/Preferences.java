@@ -16,12 +16,12 @@ public class Preferences {
     private static List<Category> categories;
 
     public static void loadData(int people, int minutes, int cost, int distance, boolean isOutside, List<Category> categories){
-        this.people = people;
-        this.minutes = minutes;
-        this.cost = cost;
-        this.distance = distance;
-        this.outside = isOutside;
-        this.categories = categories;
+        people = people;
+        minutes = minutes;
+        cost = cost;
+        distance = distance;
+        outside = isOutside;
+        categories = categories;
     }
 
     public static int getPeople() {
