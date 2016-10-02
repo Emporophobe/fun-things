@@ -21,9 +21,10 @@ public class FunThingFrame extends JFrame{
         vetoButton.addActionListener(e->{try {
             IFunThing f = Generator.generate(Preferences.getPeople(),Preferences.getMinutes(),Preferences.getCost(),
                     Preferences.isOutside(),Preferences.getCategories());
-            this.ftPanel = new FunThingPanel(f);
-            this.ftPanel.revalidate();
-            this.ftPanel.repaint();
+            this.remove(ftPanel);
+            this.add(new FunThingPanel(f));
+            this.revalidate();
+            this.repaint();
         } catch (NoMatchException e1) {
             JOptionPane.showMessageDialog(this, e1.getMessage(), "No fun things found.",JOptionPane.ERROR_MESSAGE);
         }});
