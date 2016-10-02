@@ -21,6 +21,9 @@ class FunThingFrame extends JFrame {
     private ImageIcon loadingIcon = new ImageIcon("ajax-loader.gif");
 
     FunThingFrame(IFunThing thing) {
+
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         backButton = new JButton("BACK");
         backButton.addActionListener(e -> {
             this.setVisible(false);
