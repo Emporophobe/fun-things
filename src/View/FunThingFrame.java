@@ -36,6 +36,7 @@ class FunThingFrame extends JFrame {
         });
         vetoButton.addActionListener(e -> {
             try {
+                System.out.println(Preferences.getCategories());
                 IFunThing f = Generator.generate(Preferences.getPeople(), Preferences.getMinutes(), Preferences.getCost(),
                         Preferences.isOutside(), Preferences.getDistance(), Preferences.getCategories());
                 remove(ftPanel);
@@ -54,6 +55,9 @@ class FunThingFrame extends JFrame {
         bottomPanel.add(new ButtonRow(backButton, acceptButton, vetoButton));
         bottomPanel.add(loadingLabel);
         this.add(bottomPanel, BorderLayout.SOUTH);
+        this.ftPanel.makeBlack();
+        this.setBackground(Color.BLACK);
+        this.setForeground(Color.BLACK);
     }
 
     private class ButtonRow extends JPanel {

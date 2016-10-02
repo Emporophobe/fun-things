@@ -70,4 +70,10 @@ class FunThingPanel extends JPanel {
         b.append("</center></html>");
         return b.toString();
     }
+
+    public void makeBlack() {
+        for(Component c : getComponents()){
+            c.setBackground(Color.BLACK);
+        }
+    }
 }
