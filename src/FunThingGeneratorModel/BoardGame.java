@@ -1,8 +1,10 @@
 package FunThingGeneratorModel;
 
 import java.sql.*;
+import java.util.*;
 
 public class BoardGame extends AbstractFunThing {
+    private static final List<BoardGameEntry> LIST_OF_BOARDGAMES = BoardGame.parseBoardGames();
     private String name;
 
     public BoardGame(int participants,
@@ -14,26 +16,17 @@ public class BoardGame extends AbstractFunThing {
 
     @Override
     void generate(int participants, int maxMinutes, int maxCost, boolean isOutside) throws NoMatchException {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/funthings",
-                    "user", "%");
-            Statement statement = connection.createStatement();
-            String query = "select name from boardgames where min_players <= " + participants
-                    + " and max_players >= " + participants + " and duration <= " + maxMinutes
-                    + " order by rand() limit 1";
-            ResultSet results = statement.executeQuery(query);
-            if(results.next()) {
-                this.name = results.getString("name");
-            } else {
-                throw new NoMatchException("No board game matches those parameters");
+        Collections.shuffle(LIST_OF_BOARDGAMES);
+        boolean satisfied = false;
+        int counter = 0;
+        while(!satisfied) {
+            BoardGameEntry potentialGame = LIST_OF_BOARDGAMES.get(counter);
+            if (potentialGame.getMinPlayers() <= participants && potentialGame.getMaxPlayers() >= participants
+                    && potentialGame.getDuration() <= maxMinutes) {
+                this.name = potentialGame.getName();
+                satisfied = true;
             }
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            counter++;
         }
     }
 
@@ -48,6 +41,36 @@ public class BoardGame extends AbstractFunThing {
     }
 
     public static void main(String[] args) throws NoMatchException {
-        System.out.println(new BoardGame(3, 100, 0, false));
+        System.out.println(new BoardGame(2, 90, 0, false).getName());
     }
+
+    private static List<BoardGameEntry> parseBoardGames() {
+        List<BoardGameEntry> boardGames = new ArrayList<>();
+        File file = new File("BoardGames.csv");
+        try {
+            Scanner lineScanner = new Scanner(file);
+            lineScanner.useDelimiter("\n");
+            while(lineScanner.hasNext()) {
+                Scanner entryScanner = new Scanner(lineScanner.next());
+                entryScanner.useDelimiter(",");
+                try {
+                    String name = entryScanner.next();
+                    int minPlayers = Integer.parseInt(entryScanner.next());
+                    int maxPlayers = Integer.parseInt(entryScanner.next());
+                    int duration = Integer.parseInt(entryScanner.next());
+                    BoardGameEntry entry = new BoardGameEntry(name, minPlayers, maxPlayers, duration);
+                    boardGames.add(entry);
+                } catch (Exception e) {
+                    throw new IllegalStateException("Entry in csv file does not have the required parameters");
+                }
+                entryScanner.close();
+            }
+            lineScanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return boardGames;
+    }
+
+
 }
